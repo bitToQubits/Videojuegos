@@ -1,0 +1,17 @@
+[[package]]
+name = "pyxel"
+version = "1.6.8"
+description = "A retro game engine for Python"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[metadata]
+lock-version = "1.1"
+python-versions = ">=3.8.0,<3.9"
+content-hash = "6bfcb6978e149dd0e7439c797b044ba9d9a22b337a4ef3f9c4081ad74edfdfdc"
+
+[metadata.files]
+pyxel = [
+    {file = "pyxel-1.6.8-py3-none-any.whl", hash = "sha256:19661c145d524705162b0fe1e7535b1efb87bb46b6ff12ff0a6f21bfdde06dc8"},
+]
