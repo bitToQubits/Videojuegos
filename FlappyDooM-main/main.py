@@ -20,22 +20,22 @@ class FlappyDoom:
 
     def load_assets(self):
         # bird
-        self.bird_images = [pg.image.load(f'assets/bird/{i}.png').convert_alpha() for i in range(5)]
+        self.bird_images = [pg.image.load(f'FlappyDooM-main/assets/bird/{i}.png').convert_alpha() for i in range(5)]
         bird_image = self.bird_images[0]
         bird_size = bird_image.get_width() * BIRD_SCALE, bird_image.get_height() * BIRD_SCALE
         self.bird_images = [pg.transform.scale(sprite, bird_size) for sprite in self.bird_images]
         # background
-        self.background_image = pg.image.load('assets/images/bg.png').convert()
+        self.background_image = pg.image.load('FlappyDooM-main/assets/images/bg.png').convert()
         self.background_image = pg.transform.scale(self.background_image, RES)
         # ground
-        self.ground_image = pg.image.load('assets/images/ground.png').convert()
+        self.ground_image = pg.image.load('FlappyDooM-main/assets/images/ground.png').convert()
         self.ground_image = pg.transform.scale(self.ground_image, (WIDTH, GROUND_HEIGHT))
         # pipes
-        self.top_pipe_image = pg.image.load('assets/images/top_pipe.png').convert_alpha()
+        self.top_pipe_image = pg.image.load('FlappyDooM-main/assets/images/top_pipe.png').convert_alpha()
         self.top_pipe_image = pg.transform.scale(self.top_pipe_image, (PIPE_WIDTH, PIPE_HEIGHT))
         self.bottom_pipe_image = pg.transform.flip(self.top_pipe_image, False, True)
         # bird mask
-        mask_image = pg.image.load('assets/bird/mask.png').convert_alpha()
+        mask_image = pg.image.load('FlappyDooM-main/assets/bird/mask.png').convert_alpha()
         mask_size = mask_image.get_width() * BIRD_SCALE, mask_image.get_height() * BIRD_SCALE
         self.mask_image = pg.transform.scale(mask_image, mask_size)
 

@@ -1438,10 +1438,10 @@ def main():
     clock = pygame.time.Clock()
 
     #images
-    image = pygame.image.load('data\\NES - Urban Champion - Characters.png').convert()
-    background = pygame.image.load('data\\NES - Urban Champion - Street Map.gif').convert()
-    pit1 = pygame.image.load('data\\pit1.png').convert()
-    pit2 = pygame.image.load('data\\pit2.png').convert()
+    image = pygame.image.load('urban_champion_source/data/NES - Urban Champion - Characters.png').convert()
+    background = pygame.image.load('urban_champion_source/data/NES - Urban Champion - Street Map.gif').convert()
+    pit1 = pygame.image.load('urban_champion_source/data/pit1.png').convert()
+    pit2 = pygame.image.load('urban_champion_source/data/pit2.png').convert()
     image.set_colorkey(image.get_at((0,150)))
     #head_up_display
     hud1 = image.subsurface([256, 0, 256, 71])
@@ -1465,8 +1465,8 @@ def main():
     left_pit = False
     right_pit = False
     #sounds = load_sounds()
-    player = Player(image, 'data\\sprite_info.spr', 'data\\animation_info.anm', [61, ground_y_pos])#61
-    opponent = Player(image, 'data\\sprite_info.spr', 'data\\animation_info.anm', [194, ground_y_pos], 'guy2')#194
+    player = Player(image, 'urban_champion_source/data/sprite_info.spr', 'urban_champion_source/data/animation_info.anm', [61, ground_y_pos])#61
+    opponent = Player(image, 'urban_champion_source/data/sprite_info.spr', 'urban_champion_source/data/animation_info.anm', [194, ground_y_pos], 'guy2')#194
     player.opponent = opponent
     opponent.opponent = player
     game_event = Game_Event(image, player, opponent)

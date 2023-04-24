@@ -80,7 +80,7 @@ def title_screen(display_surface, screen):
                   screen.blit(scaled_display_surface, (0,0))
                   screen_transition(screen, "intro")
                   pygame.mixer.music.set_volume(0.5)
-                  pygame.mixer.music.load('data\\sounds\\BGM16.mid')
+                  pygame.mixer.music.load('City of Rage/data/sounds/BGM16.mid')
                   pygame.mixer.music.play()
                   return
                
@@ -97,11 +97,11 @@ def end(surface, end_type):
     surface_copy = surface.copy()
     pygame.mixer.music.stop()
     if end_type == "win":
-       text = pygame.image.load('data\\win.png').convert()
-       pygame.mixer.music.load('data\\sounds\\BGM02.mid')
+       text = pygame.image.load('City of Rage/data/win.png').convert()
+       pygame.mixer.music.load('City of Rage/data/sounds/BGM02.mid')
     elif end_type == "lose":
-       text  = pygame.image.load('data\\lose.png').convert()
-       pygame.mixer.music.load('data\\sounds\\BGM14.mid')
+       text  = pygame.image.load('City of Rage/data/lose.png').convert()
+       pygame.mixer.music.load('City of Rage/data/sounds/BGM14.mid')
     size = (int(text.get_width() * 1.3), int(text.get_height() * 1.3))
     text = pygame.transform.scale(text, size)   
     text.set_colorkey(text.get_at((0, 0)))
@@ -1146,7 +1146,7 @@ def main():
     enemies_group = []
     sounds = load_sounds()
     player = Player(Axel_image, 'City of Rage/data/Axel.spr', 'City of Rage/data/Axel.anm', [-30, 0], ground_y_pos+10, groups=[objects_to_draw])
-    hit_spark = animation.Animation(hit_sparks_image, 'City of Rage/data/hit_spark.spr', 'data\\hit_spark.anm', [100, 100], 1/3)
+    hit_spark = animation.Animation(hit_sparks_image, 'City of Rage/data/hit_spark.spr', 'City of Rage/data/hit_spark.anm', [100, 100], 1/3)
     enemies.load_data()
     #enemy = enemies.Galsia([190, 0], ground_y_pos, 1, player, groups=[objects_to_draw, enemies_group])
     bosses.load_data()

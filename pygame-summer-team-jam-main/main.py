@@ -197,7 +197,7 @@ def create_or_recreate_window():
 
     pygame.display.set_mode(size, pygame.SCALED | pygame.RESIZABLE)
     pygame.display.set_caption(config.Display.title)
-    pygame.display.set_icon(pygame.image.load(utils.resource_path("assets/icon/icon.png")))
+    pygame.display.set_icon(pygame.image.load(utils.resource_path("pygame-summer-team-jam-main/assets/icon/icon.png")))
 
 
 def _main():

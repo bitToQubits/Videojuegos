@@ -19,12 +19,12 @@ class SoundManager:
     # stereo sound, but single channel playing [like original arcade machines]
 
     SOUND_PATHS = {
-        'death': 'assets/sounds/death',
-        'jump': 'assets/sounds/jump',
-        'kill': 'assets/sounds/kill',
-        'accept': 'assets/sounds/accept',
-        'blip': 'assets/sounds/blip',
-        'blip2': 'assets/sounds/blip2'
+        'death': 'pygame-summer-team-jam-main/assets/sounds/death',
+        'jump': 'pygame-summer-team-jam-main/assets/sounds/jump',
+        'kill': 'pygame-summer-team-jam-main/assets/sounds/kill',
+        'accept': 'pygame-summer-team-jam-main/assets/sounds/accept',
+        'blip': 'pygame-summer-team-jam-main/assets/sounds/blip',
+        'blip2': 'pygame-summer-team-jam-main/assets/sounds/blip2'
     }
     PRIORITIES = ['accept', 'death', 'jump', 'kill', 'blip2', 'blip']
 
@@ -34,8 +34,8 @@ class SoundManager:
     CHANNEL: pygame.mixer.Channel = None
 
     SONG_PATHS = {
-        "menu_theme": "assets/songs/menu_theme.ogg",
-        "game_theme": "assets/songs/game_theme.ogg"
+        "menu_theme": "pygame-summer-team-jam-main/assets/songs/menu_theme.ogg",
+        "game_theme": "pygame-summer-team-jam-main/assets/songs/game_theme.ogg"
     }
     CURRENT_SONG_ID: str = None
     IS_FADING = False

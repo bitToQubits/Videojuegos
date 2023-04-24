@@ -49,7 +49,7 @@ def load_animation_data(animation_file):
     return animations
 
 def load_data():
-    image = pygame.image.load('data\\Genesis 32X SCD - Streets of Rage 2 - Galsia.png').convert()
+    image = pygame.image.load('City of Rage/data/Genesis 32X SCD - Streets of Rage 2 - Galsia.png').convert()
     Galsia.get_sprites(image)
     Galsia.get_animations()
     Galsia.health_bar = Galsia.make_health_bar()
@@ -252,12 +252,12 @@ class Galsia(Enemy):
         self.change_animation('walk')
         
     def get_sprites(image):
-        sprite_file = "data\\Galsia.spr"
+        sprite_file = "City of Rage/data/Galsia.spr"
         Galsia.right_side_sprites = Enemy.get_sprites(image, sprite_file)
         Galsia.left_side_sprites = Enemy.get_left_side_sprites(Galsia.right_side_sprites)
 
     def get_animations():
-        animation_file = "data\\Galsia.anm"
+        animation_file = "City of Rage/data/Galsia.anm"
         animations = {}            
         animations_data = load_animation_data(animation_file)
         animations['stand'] = animations_data[0]

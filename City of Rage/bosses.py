@@ -50,7 +50,7 @@ def load_animation_data(animation_file):
     return animations
 
 def load_data():
-    image = pygame.image.load('data\\Genesis 32X SCD - Streets of Rage 2 - Big-Ben.png').convert()
+    image = pygame.image.load('City of Rage/data/Genesis 32X SCD - Streets of Rage 2 - Big-Ben.png').convert()
     Big_Ben.get_sprites(image)
     Big_Ben.get_animations()
     Big_Ben.health_bar = Big_Ben.make_health_bar()
@@ -258,12 +258,12 @@ class Big_Ben(Boss):
         self.change_animation('laugh')
         
     def get_sprites(image):
-        sprite_file = "data\\Big-Ben.spr"
+        sprite_file = "City of Rage/data/Big-Ben.spr"
         Big_Ben.right_side_sprites = Boss.get_sprites(image, sprite_file)
         Big_Ben.left_side_sprites = Boss.get_left_side_sprites(Big_Ben.right_side_sprites)
 
     def get_animations():
-        animation_file = "data\\Big-Ben.anm"
+        animation_file = "City of Rage/data/Big-Ben.anm"
         animations = {}            
         animations_data = load_animation_data(animation_file)
         animations['stand'] = animations_data[0]

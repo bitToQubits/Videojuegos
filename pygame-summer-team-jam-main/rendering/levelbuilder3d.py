@@ -148,7 +148,7 @@ def load_player_art(w=0.8, h=0.5):
     # first pass just finds the max / mins of the set of animations
     for anim_name in anims:
         try:
-            raw_path = "assets/wireframe_models/player/" + anim_name
+            raw_path = "pygame-summer-team-jam-main/assets/wireframe_models/player/" + anim_name
             safe_path = utility_functions.resource_path(raw_path)
 
             for filename in sorted(os.listdir(safe_path)):

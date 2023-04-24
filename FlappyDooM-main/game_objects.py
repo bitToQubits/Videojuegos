@@ -5,7 +5,7 @@ from settings import *
 class Score:
     def __init__(self, game):
         self.game = game
-        self.font = pg.font.Font('assets/font/doom.ttf', 150)
+        self.font = pg.font.Font('FlappyDooM-main/assets/font/doom.ttf', 150)
         self.font_pos = (WIDTH // 2, HEIGHT // 8)
 
     def draw(self):
@@ -16,11 +16,11 @@ class Score:
 
 class Sound:
     def __init__(self):
-        self.hit_sound = pg.mixer.Sound('assets/sound/hit.wav')
-        self.point_sound = pg.mixer.Sound('assets/sound/point.wav')
-        self.wing_sound = pg.mixer.Sound('assets/sound/wing.wav')
+        self.hit_sound = pg.mixer.Sound('FlappyDooM-main/assets/sound/hit.wav')
+        self.point_sound = pg.mixer.Sound('FlappyDooM-main/assets/sound/point.wav')
+        self.wing_sound = pg.mixer.Sound('FlappyDooM-main/assets/sound/wing.wav')
         self.wing_sound.set_volume(0.6)
-        self.music = pg.mixer.music.load('assets/sound/theme.mp3')
+        self.music = pg.mixer.music.load('FlappyDooM-main/assets/sound/theme.mp3')
         pg.mixer.music.set_volume(0.2)
         pg.mixer.music.play(-1)
 

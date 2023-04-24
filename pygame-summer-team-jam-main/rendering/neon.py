@@ -106,7 +106,7 @@ class NeonRenderer:
         """calls cv2.polylines with the given params.
         The only reason this method is split off like this is to make things easier to profile.
         """
-        cv2.polylines(array, pts, connected, color, width, lineType=lineType)
+        cv2.polylines(array, pts, connected, color, int(width), lineType=cv2.LINE_4)
 
     def _blur(self, array, kernel):
         """blurs the image using cv2.blur
