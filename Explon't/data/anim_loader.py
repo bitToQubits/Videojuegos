@@ -2,9 +2,7 @@ import os, json
 
 import pygame
 
-from .core_funcs import *
-
-ANIMATION_PATH = 'data/images/animations'
+ANIMATION_PATH = "Explon't/data/images/animations"
 COLORKEY = (0, 0, 0)
 
 def load_img(path, colorkey):

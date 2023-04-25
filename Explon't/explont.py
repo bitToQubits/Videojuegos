@@ -40,7 +40,7 @@ class GameData:
         self.player = None
         self.input = [False, False, False]
         self.clouds = []
-        self.grass_manager = GrassManager('data/images/grass', tile_size=16)
+        self.grass_manager = GrassManager('Explon\'t/data/images/grass', tile_size=16)
         self.circle_particles = []
         self.enemies = []
         self.game_over = 0
@@ -90,7 +90,7 @@ class GameData:
         self.reset()
 
         self.level_map = tile_map.TileMap((TILE_SIZE, TILE_SIZE), display.get_size())
-        self.level_map.load_map('data/maps/' + name + '.json')
+        self.level_map.load_map('Explon\'t/data/maps/' + name + '.json')
 
         for entity in self.level_map.load_entities():
             entity_type = entity[2]['type'][1]
@@ -528,32 +528,32 @@ clock = pygame.time.Clock()
 
 animation_manager = AnimationManager()
 
-spritesheets, spritesheets_data = spritesheet_loader.load_spritesheets('data/images/spritesheets/')
+spritesheets, spritesheets_data = spritesheet_loader.load_spritesheets("Explon\'t/data/images/spritesheets/")
 
-foliage_animations = [AnimatedFoliage(load_img('data/images/foliage/' + str(i) + '.png'), [[23, 67, 75], [100, 125, 52], [192, 199, 65]], motion_scale=0.5) for i in range(3)]
+foliage_animations = [AnimatedFoliage(load_img('Explon\'t/data/images/foliage/' + str(i) + '.png'), [[23, 67, 75], [100, 125, 52], [192, 199, 65]], motion_scale=0.5) for i in range(3)]
 
-load_particle_images('data/images/particles')
+load_particle_images('Explon\'t/data/images/particles')
 
-anger_icon_1 = load_img('data/images/anger_icon_1.png')
-anger_icon_2 = load_img('data/images/anger_icon_2.png')
-anger_s1 = load_img('data/images/anger_1.png')
-anger_s2 = load_img('data/images/anger_2.png')
-anger_bar = load_img('data/images/anger_bar.png')
-anger_bar_end = load_img('data/images/anger_bar_end.png')
-anger_bar_end_white = load_img('data/images/anger_bar_end_white.png')
-bg_img = load_img('data/images/bg.png')
-gun_img = load_img('data/images/gun.png')
-lollipop_img = load_img('data/images/lollipop.png')
-warp_img = load_img('data/images/warp.png')
-hit_overlay_img = load_img('data/images/hit_overlay.png')
-tutorial_img = load_img('data/images/tutorial.png')
+anger_icon_1 = load_img('Explon\'t/data/images/anger_icon_1.png')
+anger_icon_2 = load_img('Explon\'t/data/images/anger_icon_2.png')
+anger_s1 = load_img('Explon\'t/data/images/anger_1.png')
+anger_s2 = load_img('Explon\'t/data/images/anger_2.png')
+anger_bar = load_img('Explon\'t/data/images/anger_bar.png')
+anger_bar_end = load_img('Explon\'t/data/images/anger_bar_end.png')
+anger_bar_end_white = load_img('Explon\'t/data/images/anger_bar_end_white.png')
+bg_img = load_img('Explon\'t/data/images/bg.png')
+gun_img = load_img('Explon\'t/data/images/gun.png')
+lollipop_img = load_img('Explon\'t/data/images/lollipop.png')
+warp_img = load_img('Explon\'t/data/images/warp.png')
+hit_overlay_img = load_img('Explon\'t/data/images/hit_overlay.png')
+tutorial_img = load_img('Explon\'t/data/images/tutorial.png')
 
-cloud_images = [load_img('data/images/clouds/cloud_' + str(i + 1) + '.png') for i in range(3)]
+cloud_images = [load_img('Explon\'t/data/images/clouds/cloud_' + str(i + 1) + '.png') for i in range(3)]
 
-font_white = Font('data/fonts/large_font.png', (247, 237, 186))
-font_black = Font('data/fonts/large_font.png', (31, 14, 28))
+font_white = Font('Explon\'t/data/fonts/large_font.png', (247, 237, 186))
+font_black = Font('Explon\'t/data/fonts/large_font.png', (31, 14, 28))
 
-sounds = {sound.split('/')[-1].split('.')[0] : pygame.mixer.Sound('data/sfx/' + sound) for sound in os.listdir('data/sfx')}
+sounds = {sound.split('/')[-1].split('.')[0] : pygame.mixer.Sound('Explon\'t/data/sfx/' + sound) for sound in os.listdir('Explon\'t/data/sfx')}
 sounds['ambience'].set_volume(0.2)
 sounds['crunch'].set_volume(0.7)
 sounds['grass_1'].set_volume(0.06)
@@ -569,7 +569,7 @@ sounds['warning'].set_volume(0.3)
 
 gd = GameData()
 
-levels = [m.split('.')[0] for m in os.listdir('data/maps')]
+levels = [m.split('.')[0] for m in os.listdir('Explon\'t/data/maps')]
 
 def next_level():
     gd.load_map(random.choice(levels))
@@ -581,7 +581,7 @@ tutorial_x = -100
 
 sounds['ambience'].play(-1)
 
-pygame.mixer.music.load('data/music.ogg')
+pygame.mixer.music.load('Explon\'t/data/music.ogg')
 pygame.mixer.music.set_volume(0.5)
 pygame.mixer.music.play(-1)
 
