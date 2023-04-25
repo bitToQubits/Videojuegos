@@ -579,11 +579,11 @@ next_level()
 global_time = 0
 tutorial_x = -100
 
-sounds['ambience'].play(-1)
+#sounds['ambience'].play(-1)
 
-pygame.mixer.music.load('Explon\'t/data/music.ogg')
-pygame.mixer.music.set_volume(0.5)
-pygame.mixer.music.play(-1)
+#pygame.mixer.music.load('Explon\'t/data/music.ogg')
+#pygame.mixer.music.set_volume(0.5)
+#pygame.mixer.music.play(-1)
 
 while True:
     global_time += 1
@@ -786,7 +786,7 @@ while True:
 
     if (gd.anger >= 59) and (gd.game_over == 0):
         gd.screenshake = 40
-        sounds['death'].play()
+        #sounds['death'].play()
         for i in range(16):
             angle = random.random() * math.pi * 0.5 + math.pi * 5 / 4
             speed = random.random() * 2 + 1
