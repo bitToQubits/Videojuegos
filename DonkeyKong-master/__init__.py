@@ -35,8 +35,6 @@ class Controller:
         
         elif self.state == 'playing':
             self.state = self.game.update(pyxel)
-            pyxel.load("opjects.pyxres")
-            pyxel.playm(0, loop=True)
         
  
     #----------------------------------------------------------------------------

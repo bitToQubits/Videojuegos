@@ -10,7 +10,7 @@ import math
 
 class Game:
     def __init__(self):
-        WIDTH = 298
+        WIDTH = 200
         HEIGHT =  350
         CAPTION = "Mario Game Beta 5.0"
 

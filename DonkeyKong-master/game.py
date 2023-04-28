@@ -44,7 +44,7 @@ class Game:
     #------------------------------------------------------------------------------
     def start(self, pyxel):
         #Creating the Music
-        #pyxel.playm(0, loop = True)
+        pyxel.playm(0, loop = True)
         
         # Creating the Characters
         self.donkey = Donkey()
