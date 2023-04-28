@@ -12,3 +12,17 @@ while True:
             break
         if event.type == pygame.JOYBUTTONUP:
             print(event)'''
+
+from pyjoystick.sdl2 import Key, Joystick, run_event_loop
+
+def print_add(joy):
+    print('Added', joy)
+
+def print_remove(joy):
+    print('Removed', joy)
+
+def key_received(key):
+    print('received', key)
+    return key;
+
+run_event_loop(print_add, print_remove, key_received)

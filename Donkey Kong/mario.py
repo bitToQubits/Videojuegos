@@ -1,4 +1,5 @@
 import pyxel
+
 class Mario:
     # METHODS
 
