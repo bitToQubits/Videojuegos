@@ -16,7 +16,7 @@
   },
   "Music": {
     "enabled": true,
-    "volume": 0.5
+    "volume": 0
   },
   "Sound": {
     "enabled": true,
