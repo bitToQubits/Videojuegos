@@ -6,8 +6,10 @@ import statics
 import pyxel
 import random
 import math
+from pyjoystick.interface import *
 
 class Game:
+
     def __init__(self):
         WIDTH = 200
         HEIGHT =  350
@@ -16,6 +18,9 @@ class Game:
         self.mario = Mario()
         self.kong = Donkey()
         self.win_condition = False
+        self.joystick = Joystick()
+        self.key = HatValues()
+        #self.loop = JoystickEventLoop()
 
         self.barrels = {}
         #######################
@@ -156,6 +161,7 @@ class Game:
         pyxel.run(self.update, self.draw)
 
     def update(self):
+        print(self.joystick.name)
         if not self.mario.dead and not self.mario.win:
             self.win_condition = False
             self.mario.onplat = False
@@ -394,6 +400,8 @@ class Game:
             with open(self.scores_path, "w") as file:
                 file.write(str(self.highscores))
             self.reset()
+
+
 
     def draw(self):
         if not self.mario.dead and not self.mario.win:
