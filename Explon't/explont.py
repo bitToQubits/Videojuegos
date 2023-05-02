@@ -516,7 +516,7 @@ def end_screen(gd):
 pygame.init()
 pygame.display.set_caption('Explon\'t')
 
-screen = pygame.display.set_mode((640, 480), 0, 32)
+screen = pygame.display.set_mode((640, 480), pygame.FULLSCREEN)
 display = pygame.Surface((320, 240))
 base_display = display.copy()
 display.set_colorkey((0, 0, 0))

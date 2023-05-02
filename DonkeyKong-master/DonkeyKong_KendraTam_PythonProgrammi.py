@@ -201,7 +201,7 @@ for i in range(0, 400):
 # instructions - outputs the instructions on the console
 # @param: none
 # @return: none
-def instructions():
+'''def instructions():
     print ("Donkey Kong has kidnapped Pauline!")
     print ("You must now help Mario save her by climbing all the way")
     print ("up the structure to the platform where she is being held.")
@@ -218,13 +218,13 @@ def instructions():
     print ("GOOD LUCK!")
     print
     input("Hit return when you are done reading the instructions: ")
-    print
+    print'''
 
 
 # getName - user inputs name
 # @param: none
 # @return: name(str)
-def getName():
+'''def getName():
     
     #user input
     name = input("Please enter your name: ")
@@ -236,13 +236,13 @@ def getName():
             print
             name = input("Please enter a different name: ")
         
-    return name
+    return name'''
 
 
 # highScore - finds the high score and adds the current user's score to the leaderboard
 # @param: none
 # @return: highestScore (int)
-def highScore():
+'''def highScore():
     
     #adds user's score
     leaderboard[name] = score
@@ -256,7 +256,7 @@ def highScore():
     #finds the highest score
     highestScore = scores[len(scores)-1]
     
-    return highestScore
+    return highestScore'''
 
 
 # outputLeaderboard - sorts the scores from greatest to least and ouputs it
@@ -737,19 +737,16 @@ def redraw_screen():
     #updating
     pygame.display.update()
 
-
-
-#prints instructions on console
-instructions()
-
 #loop whole game if user wants to keep restarting
 while replay:
     
     #setting up
-    name = getName()
+    #name = getName()
     
     #start creating a graphical program
     pygame.init()
+    pygame.joystick.init()
+    joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
     walk = pygame.mixer.Sound("DonkeyKong-master/walking\\walking.wav")
     jump = pygame.mixer.Sound("DonkeyKong-master/jump\\jump.wav")
     intro = pygame.mixer.Sound("DonkeyKong-master/intro1\\intro1.wav")
@@ -761,7 +758,7 @@ while replay:
     #Set Screen Dimensions
     WIDTH = 800
     HEIGHT = 800
-    screen = pygame.display.set_mode((WIDTH,HEIGHT))
+    screen = pygame.display.set_mode((WIDTH,HEIGHT), pygame.FULLSCREEN)
     
     #Name of Window Opened
     pygame.display.set_caption('Donkey Kong')
@@ -1104,7 +1101,7 @@ while replay:
                 #if lives is less than 0, gameDone is True, and put score in leaderboards and find the high score using highScore()
                 if lives < 0:
                     gameDone = True
-                    highestScore = highScore()
+                    #highestScore = highScore()
         
         #if the score reaches over 999999, you win the game
         if score >= 999999:
@@ -1127,7 +1124,7 @@ while replay:
                     for i in range(0, 400):
                         #add to make if fall down
                         confettiY[i] = confettiY[i] + confettiSpeed[i]
-                    highestScore = highScore()
+                    #highestScore = highScore()
                 
                 #reset values
                 gameStart = False
@@ -1203,21 +1200,21 @@ while replay:
         #looks for escape to be pressed
         if keys[pygame.K_ESCAPE]:
             #finds highscore and adds score to the dictionary
-            highestScore = highScore()
+            #highestScore = highScore()
             
             #reset variables to quit program
             inPlay = False
             replay = False
         
         #looks for space to be pressed to make pressed True and start the game
-        if keys[pygame.K_SPACE]:
+        if keys[pygame.K_SPACE] or pygame.joystick.Joystick(0).get_button(12):
             pressed = True
         
         #must satisfy all these conditions in order for pressing  the left, right, up, down, space(for jumping), and return key to do anything
         if (gameStart and jumpLeft == False and jumpRight == False and jumpStill == False and winLevel == False and hit == False) or gameDone or winGame:      
             
             #looks for left arrow to be pressed
-            if keys[pygame.K_LEFT] and moveSides and (marioX != 320 or marioY > 232) and moveLeft and marioX != 60:
+            if keys[pygame.K_LEFT] or pygame.joystick.Joystick(0).get_button(7) and moveSides and (marioX != 320 or marioY > 232) and moveLeft and marioX != 60:
                 #changes mario's y to incline up/go down with the slope
                 marioY = incline(marioY, marioX, direction, "mario")
                 
@@ -1233,14 +1230,14 @@ while replay:
                     marioImage = marioLeft
                     
                 #if space is pressed while left is also being pressed, jumpLeft is True and change the image 
-                if keys[pygame.K_SPACE]:
+                if keys[pygame.K_SPACE] or pygame.joystick.Joystick(0).get_button(12):
                     jumpLeft = True
                     marioImage = marioJumpLeft
                 
                 direction = "left"
             
             #looks for right arrow to be pressed   
-            elif keys[pygame.K_RIGHT] and moveSides and moveRight and marioX != 710:
+            elif keys[pygame.K_RIGHT] or pygame.joystick.Joystick(0).get_button(5) and moveSides and moveRight and marioX != 710:
                 #changes mario's y to incline up/go down with the slope
                 marioY = incline(marioY, marioX, direction, "mario")
                 
@@ -1256,14 +1253,14 @@ while replay:
                     marioImage = marioRight
                 
                 #if space is pressed while right is also being pressed, jumpRight is True and change the image
-                if keys[pygame.K_SPACE]:
+                if keys[pygame.K_SPACE] or pygame.joystick.Joystick(0).get_button(12):
                     jumpRight = True
                     marioImage = marioJumpRight
                 
                 direction = "right"
             
             #looks for up arrow to be pressed   
-            elif keys[pygame.K_UP] and (upLadder or gameDone or winGame):
+            elif keys[pygame.K_UP] or pygame.joystick.Joystick(0).get_button(4) and (upLadder or gameDone or winGame):
                 # if upLadder is true, move mario up 5 pixels
                 if upLadder:
                     marioY = marioY - 5
@@ -1297,7 +1294,7 @@ while replay:
                     option = "bottom"
             
             #looks for space bar to be pressed and can only do something when mario already jumping left or right and you're not in the middle of a ladder
-            if keys[pygame.K_SPACE] and jumpLeft == False and jumpRight == False and moveSides:
+            if keys[pygame.K_SPACE] or pygame.joystick.Joystick(0).get_button(12) and jumpLeft == False and jumpRight == False and moveSides:
                 #it makes jumpStil true
                 jumpStill = True
                 

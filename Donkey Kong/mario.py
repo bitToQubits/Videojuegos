@@ -10,8 +10,7 @@ class Mario:
         self.__dead = False #Turns True when mario.lives = 0
         self.__onplat = False #Checks whether Mario is standing on a platform
         self.__onladder = False #Checks whether Mario is standing on/over a ladder
-        self.__falling = False #Turns True when Mario is neither onplat, onladder nor jumping
-        self.__direct = 'R' #Stores the way Mario is facing (Right/Left)
+        self.__falling = False #Turns True when Mario is neither onplat, onladder nor jumping        self.__direct = 'R' #Stores the way Mario is facing (Right/Left)
         self.__jumpMoving = False  # Whether or not the player is jumping while moving
         self.__jumping = False #Whether or not Mario is jumping
         self.__gravity = 0 #This attribute was used to create more realistic jumps

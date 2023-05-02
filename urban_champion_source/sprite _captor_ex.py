@@ -778,7 +778,7 @@ def main():
     pygame.init()
 
     #Open Pygame window
-    screen = pygame.display.set_mode((640, 480),) #add RESIZABLE or FULLSCREEN
+    screen = pygame.display.set_mode((640, 480),pygame.FULLSCREEN) #add RESIZABLE or FULLSCREEN
     #Title
     pygame.display.set_caption("Sprite Captor")
     #clock

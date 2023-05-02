@@ -1421,9 +1421,8 @@ class Player():
 def main():
     
     pygame.init()
-
     #Open Pygame window
-    screen = pygame.display.set_mode(SCREEN_SIZE,) #add RESIZABLE or FULLSCREEN
+    screen = pygame.display.set_mode() #add RESIZABLE or FULLSCREEN
     display_surface = pygame.Surface(NES_RESOLUTION).convert()
     scaled_display_surface = pygame.transform.scale(display_surface,(640,480))
     #Title
