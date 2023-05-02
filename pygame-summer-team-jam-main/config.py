@@ -51,7 +51,7 @@ class KeyBinds:
         down = [pygame.K_s, pygame.K_DOWN]
         right = [pygame.K_d, pygame.K_RIGHT]
         left = [pygame.K_a, pygame.K_LEFT]
-        accept = [pygame.K_RETURN, pygame.K_SPACE]
+        accept = [pygame.K_RETURN]
         cancel = [pygame.K_ESCAPE]
 
     class Toogle:

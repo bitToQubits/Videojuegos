@@ -16,11 +16,11 @@
   },
   "Music": {
     "enabled": true,
-    "volume": 0
+    "volume": 1.0
   },
   "Sound": {
     "enabled": true,
-    "volume": 0.5
+    "volume": 1.0
   },
   "Debug": {
     "use_neon": true,

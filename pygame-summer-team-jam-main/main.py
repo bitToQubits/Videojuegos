@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import pygame
 
 import keybinds
@@ -9,11 +10,9 @@ from sound_manager.SoundManager import SoundManager
 import rendering.levelbuilder3d as levelbuilder3d
 import gameplay.highscores as highscores
 import util.utility_functions as utils
-
+import json,os
 
 TARGET_FPS = config.Display.fps if not config.Debug.fps_test else -1
-
-
 class GameLoop:
 
     def __init__(self):
@@ -22,16 +21,27 @@ class GameLoop:
         self.screen = pygame.display.get_surface()
         self.current_mode = MainMenuMode(self)
         self.current_mode.on_mode_start()
-
+        
     def set_mode(self, next_mode):
         if self.current_mode != next_mode:
             self.current_mode.on_mode_end()
         self.current_mode = next_mode
-        self.current_mode.on_mode_start()
+        self.current_mode.on_mode_start
 
     def start(self):
         dt = 0
         while self.running:
+            joysticks = []
+            for i in range(pygame.joystick.get_count()):
+                joysticks.append(pygame.joystick.Joystick(i))
+
+            for joystick in joysticks:
+                joystick.init()
+
+            with open(os.path.join(os.getcwd(), "ps4_keys.json"), "r+") as file:
+                button_keys = json.load(file)
+
+            analog_keys = {0:0, 1:0,2:0,3:0,4:-1, 5:-1}
             events = []
             for e in pygame.event.get():
                 if e.type == pygame.QUIT:
@@ -41,6 +51,55 @@ class GameLoop:
                 else:
                     # collect all the events so we can pass them into the current game mode.
                     events.append(e)
+                
+                #Botones presionados
+                if e.type == pygame.JOYBUTTONDOWN:
+                    if e.button == button_keys['left_arrow']:
+                        print("Left arrow")
+                    if e.button == button_keys['right_arrow']:
+                        print("Right arrow")
+                    if e.button == button_keys['up_arrow']:
+                        print("Up arrow")
+                    if e.button == button_keys['down_arrow']:
+                        print("Down arrow")
+
+                #Botones que se dejan de presionar
+                if e.type == pygame.JOYBUTTONUP:
+                    if e.button == button_keys['left_arrow']:
+                        print("-Left Arrow")
+                    if e.button == button_keys['right_arrow']:
+                        print("-Right Arrow")
+                    if e.button == button_keys['down_arrow']:
+                        print("-Down Arrow")
+                    if e.button == button_keys['up_arrow']:
+                        print("-Up Arrow")
+
+                if e.type == pygame.JOYAXISMOTION:
+                    analog_keys[e.axis] = e.value
+                    #Horizontal analogico
+                    if abs(analog_keys[0]) > .4:
+                        if analog_keys[0] < -.7:
+                            print("< -.7")
+                        else:
+                            print("Not <-.7")
+
+                        if analog_keys[0] > .7:
+                            print("> .7")
+                        else:
+                            print("not >.7")
+                    #Vertical analogico
+                    if abs(analog_keys[1]) > .4:
+                        if analog_keys[1] < -.7:
+                            print("< -.7")
+                        else:
+                            print("not < -.7")
+
+                        if analog_keys[1] > -.7:
+                            print("> -.7")
+                        else:
+                            print("not > - .7")
+
+
 
                 # global keybinds
                 if e.type == pygame.KEYDOWN:
@@ -195,7 +254,7 @@ class MainMenuMode(GameMode):
 def create_or_recreate_window():
     size = config.Display.width, config.Display.height
 
-    pygame.display.set_mode(size, pygame.SCALED | pygame.RESIZABLE)
+    pygame.display.set_mode(size)
     pygame.display.set_caption(config.Display.title)
     pygame.display.set_icon(pygame.image.load(utils.resource_path("pygame-summer-team-jam-main/assets/icon/icon.png")))
 
