@@ -2,9 +2,10 @@ import pygame
 import keybinds
 from sound_manager.SoundManager import SoundManager
 import time
-
+import main
 import util.fonts as fonts
-
+import os
+import json
 
 class Player:
     def __init__(self, x=0, y=0, z=0):
@@ -131,17 +132,37 @@ class Player:
     def _handle_inputs(self, events, pressed):
         for e in events:
             if e.type == pygame.KEYDOWN:
-                if e.key in keybinds.JUMP:
+                if e.key in keybinds.JUMP or main.up:
                     self.jump()
-                if e.key in keybinds.LEFT:
+                if e.key or e.button in keybinds.LEFT:
                     self.move_left()
-                if e.key in keybinds.RIGHT:
+                if e.key or e.button in keybinds.RIGHT:
                     self.move_right()
-                if e.key in keybinds.SLIDE:
+                if e.key or e.button in keybinds.SLIDE:
                     self.slide()
             elif e.type == pygame.KEYUP:
                 if e.key in keybinds.SLIDE and self.is_sliding():
                     self.run()
+            joysticks = []
+            for i in range(pygame.joystick.get_count()):
+                joysticks.append(pygame.joystick.Joystick(i))
+
+            for joystick in joysticks:
+                joystick.init()
+
+            with open(os.path.join(os.getcwd(), "ps4_keys.json"), "r+") as file:
+                button_keys = json.load(file)
+
+            analog_keys = {0:0, 1:0,2:0,3:0,4:-1, 5:-1}
+            if e.type == pygame.JOYBUTTONDOWN:
+                if e.button == button_keys['left_arrow']:
+                    self.move_left()                
+                if e.button == button_keys['right_arrow']:
+                    self.move_right()
+                if e.button == button_keys['up_arrow']:
+                    self.jump()
+                if e.button == button_keys['down_arrow']:
+                    self.slide()
 
         if any(pressed[k] for k in keybinds.SLIDE):
             self.slide()

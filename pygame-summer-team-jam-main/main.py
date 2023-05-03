@@ -14,10 +14,6 @@ import util.utility_functions as utils
 import json,os
 
 TARGET_FPS = config.Display.fps if not config.Debug.fps_test else -1
-down = False
-up = False
-left = False
-right = False
 class GameLoop:
     def __init__(self):
         self.running = True
@@ -54,55 +50,56 @@ class GameLoop:
                     self.running = False
                     return
                 else:
-                    # collect all the events so we can pass them into the current game mode.
-                    events.append(e)
-                
-                #Botones presionados
-                if e.type == pygame.JOYBUTTONDOWN:
-                    if e.button == button_keys['left_arrow']:
-                        left = True
-                    if e.button == button_keys['right_arrow']:
-                        right = True
-                    if e.button == button_keys['up_arrow']:
-                        up = True
-                    if e.button == button_keys['down_arrow']:
-                        down = True
+                    #Botones presionados
+                    if e.type == pygame.JOYBUTTONDOWN:
+                        if e.button == button_keys['left_arrow']:
+                            left = True                  
+                        if e.button == button_keys['right_arrow']:
+                            right = True
+                        if e.button == button_keys['up_arrow']:
+                            up = True
+                        if e.button == button_keys['down_arrow']:
+                            down = True
 
                 #Botones que se dejan de presionar
-                if e.type == pygame.JOYBUTTONUP:
-                    if e.button == button_keys['left_arrow']:
-                        left = False
-                    if e.button == button_keys['right_arrow']:
-                        right = False
-                    if e.button == button_keys['down_arrow']:
-                        down = False
-                    if e.button == button_keys['up_arrow']:
-                        up = False
-
-                if e.type == pygame.JOYAXISMOTION:
-                    analog_keys[e.axis] = e.value
-                    #Horizontal analogico
-                    if abs(analog_keys[0]) > .4:
-                        if analog_keys[0] < -.7:
-                            left = True
-                        else:
+                    if e.type == pygame.JOYBUTTONUP:
+                        if e.button == button_keys['left_arrow']:
                             left = False
-
-                        if analog_keys[0] > .7:
-                            right = True
-                        else:
+                        if e.button == button_keys['right_arrow']:
                             right = False
-                    #Vertical analogico
-                    if abs(analog_keys[1]) > .4:
-                        if analog_keys[1] < -.7:
-                            up = True
-                        else:
+                        if e.button == button_keys['down_arrow']:
+                            down = False
+                        if e.button == button_keys['up_arrow']:
                             up = False
 
-                        if analog_keys[1] > -.7:
-                            down = True
-                        else:
-                            down = False
+                    if e.type == pygame.JOYAXISMOTION:
+                        analog_keys[e.axis] = e.value
+                        #Horizontal analogico
+                        if abs(analog_keys[0]) > .4:
+                            if analog_keys[0] < -.7:
+                                left = True
+                            else:
+                                left = False
+
+                            if analog_keys[0] > .7:
+                                right = True
+                            else:
+                                right = False
+                        #Vertical analogico
+                        if abs(analog_keys[1]) > .4:
+                            if analog_keys[1] < -.7:
+                                up = True
+                                print(up)
+                            else:
+                                up = False
+                                print(up)
+
+                            if analog_keys[1] > -.7:
+                                down = True
+                            else:
+                                down = False
+                    # collect all the events so we can pass them into the current game mode.
+                    events.append(e)
 
 
 

@@ -54,6 +54,7 @@ class SettingsMenuMode(main.GameMode):
                 if e.key in keybinds.MENU_UP:
                     SoundManager.play("blip")
                     self.selected_option_idx = (self.selected_option_idx - 1) % len(self.options)
+                
                 elif e.key in keybinds.MENU_DOWN:
                     SoundManager.play("blip")
                     self.selected_option_idx = (self.selected_option_idx + 1) % len(self.options)
@@ -80,6 +81,43 @@ class SettingsMenuMode(main.GameMode):
                             self.options[self.selected_option_idx][2][self.options[self.selected_option_idx][2].index(self.options[self.selected_option_idx][1]) - 1]
                         self._update_volumes()
                 elif e.key in keybinds.MENU_CANCEL:
+                    self.exit_pressed()
+                    return
+
+            if e.type == pygame.JOYBUTTONDOWN:
+                if e.button == button_keys['up_arrow']:
+                    SoundManager.play("blip")
+                    self.selected_option_idx = (self.selected_option_idx - 1) % len(self.options)
+
+                if e.button == button_keys['down_arrow']:
+                    SoundManager.play("blip")
+                    self.selected_option_idx = (self.selected_option_idx + 1) % len(self.options)
+
+                if e.button == button_keys['R1']:
+                    if self.selected_option_idx == len(self.options) - 1:
+                        self.options[self.selected_option_idx][1]()
+
+                if e.button == button_keys['right_arrow']:
+                    SoundManager.play("blip")
+                    if self.options[self.selected_option_idx][1] not in self.options[self.selected_option_idx][2]:
+                        self.options[self.selected_option_idx][1] = self.options[self.selected_option_idx][2][self.options[self.selected_option_idx][3]]
+                        self._update_volumes()
+                    elif self.options[self.selected_option_idx][1] != self.options[self.selected_option_idx][2][-1]:
+                        self.options[self.selected_option_idx][1] =\
+                            self.options[self.selected_option_idx][2][self.options[self.selected_option_idx][2].index(self.options[self.selected_option_idx][1]) + 1]
+                        self._update_volumes()
+
+                if e.button == button_keys['left_arrow']:
+                    SoundManager.play("blip")
+                    if self.options[self.selected_option_idx][1] not in self.options[self.selected_option_idx][2]:
+                        self.options[self.selected_option_idx][1] = self.options[self.selected_option_idx][2][self.options[self.selected_option_idx][3]]
+                        self._update_volumes()
+                    elif self.options[self.selected_option_idx][1] != self.options[self.selected_option_idx][2][0]:
+                        self.options[self.selected_option_idx][1] =\
+                            self.options[self.selected_option_idx][2][self.options[self.selected_option_idx][2].index(self.options[self.selected_option_idx][1]) - 1]
+                        self._update_volumes()
+
+                if e.button == button_keys['L1']:
                     self.exit_pressed()
                     return
 

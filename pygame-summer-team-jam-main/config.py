@@ -1,9 +1,7 @@
-import main
 import pygame
 import json
 import pathlib
 import traceback
-
 
 class Display:
     fps = 60
@@ -41,7 +39,7 @@ class Debug:
 
 class KeyBinds:
     class Game:
-        jump = [pygame.K_w, pygame.K_UP, pygame.K_SPACE,main.up]
+        jump = [pygame.K_w, pygame.K_UP, pygame.K_SPACE]
         left = [pygame.K_a, pygame.K_LEFT]
         right = [pygame.K_d, pygame.K_RIGHT]
         slide = [pygame.K_s, pygame.K_DOWN]
