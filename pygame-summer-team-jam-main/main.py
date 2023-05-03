@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from turtle import up
 import pygame
 
 import keybinds
@@ -13,8 +14,11 @@ import util.utility_functions as utils
 import json,os
 
 TARGET_FPS = config.Display.fps if not config.Debug.fps_test else -1
+down = False
+up = False
+left = False
+right = False
 class GameLoop:
-
     def __init__(self):
         self.running = True
         self.clock = pygame.time.Clock()
@@ -29,6 +33,7 @@ class GameLoop:
         self.current_mode.on_mode_start
 
     def start(self):
+
         dt = 0
         while self.running:
             joysticks = []
@@ -55,49 +60,49 @@ class GameLoop:
                 #Botones presionados
                 if e.type == pygame.JOYBUTTONDOWN:
                     if e.button == button_keys['left_arrow']:
-                        print("Left arrow")
+                        left = True
                     if e.button == button_keys['right_arrow']:
-                        print("Right arrow")
+                        right = True
                     if e.button == button_keys['up_arrow']:
-                        print("Up arrow")
+                        up = True
                     if e.button == button_keys['down_arrow']:
-                        print("Down arrow")
+                        down = True
 
                 #Botones que se dejan de presionar
                 if e.type == pygame.JOYBUTTONUP:
                     if e.button == button_keys['left_arrow']:
-                        print("-Left Arrow")
+                        left = False
                     if e.button == button_keys['right_arrow']:
-                        print("-Right Arrow")
+                        right = False
                     if e.button == button_keys['down_arrow']:
-                        print("-Down Arrow")
+                        down = False
                     if e.button == button_keys['up_arrow']:
-                        print("-Up Arrow")
+                        up = False
 
                 if e.type == pygame.JOYAXISMOTION:
                     analog_keys[e.axis] = e.value
                     #Horizontal analogico
                     if abs(analog_keys[0]) > .4:
                         if analog_keys[0] < -.7:
-                            print("< -.7")
+                            left = True
                         else:
-                            print("Not <-.7")
+                            left = False
 
                         if analog_keys[0] > .7:
-                            print("> .7")
+                            right = True
                         else:
-                            print("not >.7")
+                            right = False
                     #Vertical analogico
                     if abs(analog_keys[1]) > .4:
                         if analog_keys[1] < -.7:
-                            print("< -.7")
+                            up = True
                         else:
-                            print("not < -.7")
+                            up = False
 
                         if analog_keys[1] > -.7:
-                            print("> -.7")
+                            down = True
                         else:
-                            print("not > - .7")
+                            down = False
 
 
 

@@ -1,3 +1,4 @@
+import main
 import pygame
 import json
 import pathlib
@@ -40,7 +41,7 @@ class Debug:
 
 class KeyBinds:
     class Game:
-        jump = [pygame.K_w, pygame.K_UP, pygame.K_SPACE]
+        jump = [pygame.K_w, pygame.K_UP, pygame.K_SPACE,main.up]
         left = [pygame.K_a, pygame.K_LEFT]
         right = [pygame.K_d, pygame.K_RIGHT]
         slide = [pygame.K_s, pygame.K_DOWN]
