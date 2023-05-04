@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: latin-1 -*-
 import pygame
 
 import config
@@ -138,8 +140,8 @@ class PauseMenu(main.GameMode):
         self.selected_option_idx = 0
         self.gameplay_mode = gameplay_mode
         self.options = [
-            ("continue", lambda: self.continue_pressed()),
-            ("exit", lambda: self.exit_pressed())
+            ("continuar", lambda: self.continue_pressed()),
+            ("salir", lambda: self.exit_pressed())
         ]
 
         self.title_font = fonts.get_font(config.FontSize.title)
@@ -189,7 +191,7 @@ class PauseMenu(main.GameMode):
         self.gameplay_mode.draw_to_screen(screen, extra_darkness_factor=current_darkness)
 
         screen_size = screen.get_size()
-        title_surface = self.title_font.render('PAUSE', True, neon.WHITE)
+        title_surface = self.title_font.render('PAUSA', True, neon.WHITE)
 
         title_size = title_surface.get_size()
         title_y = screen_size[1] // 3 - title_size[1] // 2
@@ -216,8 +218,8 @@ class RetryMenu(main.GameMode):
         self.selected_option_idx = 0
         self.gameplay_mode = gameplay_mode
         self.options = [
-            ("retry", lambda: self.retry_pressed()),
-            ("exit", lambda: self.exit_pressed())
+            ("re-intentar", lambda: self.retry_pressed()),
+            ("volver al menú", lambda: self.exit_pressed())
         ]
 
         self.title_font = fonts.get_font(config.FontSize.title)
@@ -272,7 +274,7 @@ class RetryMenu(main.GameMode):
 
         screen_size = screen.get_size()
 
-        title_surface = self.title_font.render('GAME OVER', True, neon.WHITE)
+        title_surface = self.title_font.render('Has perdido', True, neon.WHITE)
         title_size = title_surface.get_size()
         title_y = screen_size[1] // 3 - title_size[1] // 2
         screen.blit(title_surface, dest=(screen_size[0] // 2 - title_size[0] // 2, title_y))
@@ -283,12 +285,12 @@ class RetryMenu(main.GameMode):
         screen.blit(death_msg_surface, dest=(screen_size[0] // 2 - death_msg_size[0] // 2, cur_y))
         cur_y += int(death_msg_size[1] * 2)
 
-        subtitle_surface1 = self.info_font.render("SCORE: {}".format(self.score), True, neon.WHITE)
+        subtitle_surface1 = self.info_font.render("Puntuación: {}".format(self.score), True, neon.WHITE)
         subtitle_surface1_size = subtitle_surface1.get_size()
         screen.blit(subtitle_surface1, dest=(screen_size[0] // 2 - subtitle_surface1_size[0] // 2, cur_y))
         cur_y += subtitle_surface1_size[1]
 
-        subtitle_surface2 = self.info_font.render("BEST: {}".format(self.best_score), True, neon.WHITE)
+        subtitle_surface2 = self.info_font.render("Mejor puntaje: {}".format(self.best_score), True, neon.WHITE)
         subtitle_surface2_size = subtitle_surface2.get_size()
         screen.blit(subtitle_surface2, dest=(screen_size[0] // 2 - subtitle_surface2_size[0] // 2, cur_y))
         cur_y += int(subtitle_surface2_size[1] * 2)

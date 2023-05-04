@@ -19,14 +19,15 @@ class SoundManager:
     # stereo sound, but single channel playing [like original arcade machines]
 
     SOUND_PATHS = {
-        'death': 'pygame-summer-team-jam-main/assets/sounds/death',
-        'jump': 'pygame-summer-team-jam-main/assets/sounds/jump',
-        'kill': 'pygame-summer-team-jam-main/assets/sounds/kill',
-        'accept': 'pygame-summer-team-jam-main/assets/sounds/accept',
-        'blip': 'pygame-summer-team-jam-main/assets/sounds/blip',
-        'blip2': 'pygame-summer-team-jam-main/assets/sounds/blip2'
+        'death': 'assets/sounds/death',
+        'jump': 'assets/sounds/jump',
+        'kill': 'assets/sounds/kill',
+        'accept': 'assets/sounds/accept',
+        'blip': 'assets/sounds/blip',
+        'blip2': 'assets/sounds/blip2',
+        'start_elison':'assets/sounds/start_elison'
     }
-    PRIORITIES = ['accept', 'death', 'jump', 'kill', 'blip2', 'blip']
+    PRIORITIES = ['start_elison','accept', 'death', 'jump', 'kill', 'blip2', 'blip']
 
     LOADED_SOUNDS = {}
 
@@ -34,8 +35,8 @@ class SoundManager:
     CHANNEL: pygame.mixer.Channel = None
 
     SONG_PATHS = {
-        "menu_theme": "pygame-summer-team-jam-main/assets/songs/menu_theme.ogg",
-        "game_theme": "pygame-summer-team-jam-main/assets/songs/game_theme.ogg"
+        "menu_theme": "assets/songs/menu_theme.ogg",
+        "game_theme": "assets/songs/game_theme.ogg"
     }
     CURRENT_SONG_ID: str = None
     IS_FADING = False
@@ -62,6 +63,8 @@ class SoundManager:
                         full_path = utils.resource_path(path_to_sounds + "/" + filename)
                         cls.LOADED_SOUNDS[sound_id].append(pygame.mixer.Sound(full_path))
                         cnt += 1
+                    else:
+                        print("file is not supported")
             except Exception:
                 print("INFO: error while loading sound effects: {}".format(sound_id))
                 traceback.print_exc()

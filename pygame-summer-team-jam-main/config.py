@@ -3,6 +3,7 @@ import json
 import pathlib
 import traceback
 
+
 class Display:
     fps = 60
     width = 960
@@ -50,7 +51,7 @@ class KeyBinds:
         down = [pygame.K_s, pygame.K_DOWN]
         right = [pygame.K_d, pygame.K_RIGHT]
         left = [pygame.K_a, pygame.K_LEFT]
-        accept = [pygame.K_RETURN]
+        accept = [pygame.K_RETURN, pygame.K_o]
         cancel = [pygame.K_ESCAPE]
 
     class Toogle:
@@ -106,7 +107,7 @@ _default_configs = {
             "down": [pygame.K_s, pygame.K_DOWN],
             "right": [pygame.K_d, pygame.K_RIGHT],
             "left": [pygame.K_a, pygame.K_LEFT],
-            "accept": [pygame.K_RETURN, pygame.K_SPACE],
+            "accept": [pygame.K_RETURN, pygame.K_SPACE,pygame.K_o],
             "cancel": [pygame.K_ESCAPE]
             },
 

@@ -8,10 +8,10 @@ _DISP_WID = config.Display.width
 _CACHED_FONTS = {}  # (size: int, bold: bool, font_name: str) -> Font
 
 _FONT_PATHS = {
-    "lame": "pygame-summer-team-jam-main/assets/fonts/CONSOLA.TTF",
-    "lame_bold": "pygame-summer-team-jam-main/assets/fonts/CONSOLAB.TTF",
-    "cool": "pygame-summer-team-jam-main/assets/fonts/VectorBattle.ttf",
-    "blocky": "pygame-summer-team-jam-main/assets/fonts/EightBit Atari-Ascprin.ttf"
+    "lame": "assets/fonts/CONSOLA.TTF",
+    "lame_bold": "assets/fonts/CONSOLAB.TTF",
+    "cool": "assets/fonts/VectorBattle.ttf",
+    "blocky": "assets/fonts/EightBit Atari-Ascprin.ttf"
 }
 
 

@@ -1,3 +1,5 @@
+#!/usr/bin/python
+#-*-coding: latin-1 -*-
 from typing import List
 from pygame import Vector3, Color
 from rendering.threedee import Line3D
@@ -33,7 +35,7 @@ class Obstacle:
         self._cached_3d_model = None
 
     def get_death_message(self):
-        return "avoid obstacles!"
+        return "¡Evita los obstaculos!"
 
     def get_color(self):
         return self.color
@@ -126,7 +128,7 @@ class Spikes(Obstacle):
         super().__init__(lane, z, length, neon.RED, True, False)
 
     def get_death_message(self):
-        return "jump over spikes!"
+        return "¡Salta sobre las espinas!"
 
     def generate_3d_model_at_origin(self) -> List[Line3D]:
         height = 0.2
@@ -149,7 +151,7 @@ class Enemy(Obstacle):
         super().__init__(lane, z, length, neon.LIME, False, True)
 
     def get_death_message(self):
-        return "slide through enemies!"
+        return "¡Deslizate a traves del enemigo!"
 
     def should_squeeze(self):
         return False
@@ -177,7 +179,7 @@ class Wall(Obstacle):
         super().__init__(lane, z, length, neon.PURPLE, False, False)
 
     def get_death_message(self):
-        return "avoid walls!"
+        return "¡Evita los muros!"
 
     def generate_3d_model_at_origin(self) -> List[Line3D]:
         height = 0.5

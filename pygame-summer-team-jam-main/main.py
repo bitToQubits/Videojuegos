@@ -1,5 +1,6 @@
-# -*- coding: utf-8 -*-
-from turtle import up
+#!/usr/bin/python
+#-*- encoding: latin-1 -*-
+
 import pygame
 
 import keybinds
@@ -11,38 +12,29 @@ from sound_manager.SoundManager import SoundManager
 import rendering.levelbuilder3d as levelbuilder3d
 import gameplay.highscores as highscores
 import util.utility_functions as utils
-import json,os
+
 
 TARGET_FPS = config.Display.fps if not config.Debug.fps_test else -1
+
+
 class GameLoop:
+
     def __init__(self):
         self.running = True
         self.clock = pygame.time.Clock()
         self.screen = pygame.display.get_surface()
         self.current_mode = MainMenuMode(self)
         self.current_mode.on_mode_start()
-        
+
     def set_mode(self, next_mode):
         if self.current_mode != next_mode:
             self.current_mode.on_mode_end()
         self.current_mode = next_mode
-        self.current_mode.on_mode_start
+        self.current_mode.on_mode_start()
 
     def start(self):
-
         dt = 0
         while self.running:
-            joysticks = []
-            for i in range(pygame.joystick.get_count()):
-                joysticks.append(pygame.joystick.Joystick(i))
-
-            for joystick in joysticks:
-                joystick.init()
-
-            with open(os.path.join(os.getcwd(), "ps4_keys.json"), "r+") as file:
-                button_keys = json.load(file)
-
-            analog_keys = {0:0, 1:0,2:0,3:0,4:-1, 5:-1}
             events = []
             for e in pygame.event.get():
                 if e.type == pygame.QUIT:
@@ -50,58 +42,8 @@ class GameLoop:
                     self.running = False
                     return
                 else:
-                    #Botones presionados
-                    if e.type == pygame.JOYBUTTONDOWN:
-                        if e.button == button_keys['left_arrow']:
-                            left = True                  
-                        if e.button == button_keys['right_arrow']:
-                            right = True
-                        if e.button == button_keys['up_arrow']:
-                            up = True
-                        if e.button == button_keys['down_arrow']:
-                            down = True
-
-                #Botones que se dejan de presionar
-                    if e.type == pygame.JOYBUTTONUP:
-                        if e.button == button_keys['left_arrow']:
-                            left = False
-                        if e.button == button_keys['right_arrow']:
-                            right = False
-                        if e.button == button_keys['down_arrow']:
-                            down = False
-                        if e.button == button_keys['up_arrow']:
-                            up = False
-
-                    if e.type == pygame.JOYAXISMOTION:
-                        analog_keys[e.axis] = e.value
-                        #Horizontal analogico
-                        if abs(analog_keys[0]) > .4:
-                            if analog_keys[0] < -.7:
-                                left = True
-                            else:
-                                left = False
-
-                            if analog_keys[0] > .7:
-                                right = True
-                            else:
-                                right = False
-                        #Vertical analogico
-                        if abs(analog_keys[1]) > .4:
-                            if analog_keys[1] < -.7:
-                                up = True
-                                print(up)
-                            else:
-                                up = False
-                                print(up)
-
-                            if analog_keys[1] > -.7:
-                                down = True
-                            else:
-                                down = False
                     # collect all the events so we can pass them into the current game mode.
                     events.append(e)
-
-
 
                 # global keybinds
                 if e.type == pygame.KEYDOWN:
@@ -127,6 +69,7 @@ class GameMode:
 
     def __init__(self, loop: GameLoop):
         self.loop: GameLoop = loop
+        SoundManager.play('start_elison')
 
     def on_mode_start(self):
         """Called when mode becomes active"""
@@ -149,11 +92,9 @@ class MainMenuMode(GameMode):
         super().__init__(loop)
         self.selected_option_idx = 0
         self.options = [
-            ("start", lambda: self.start_pressed()),
-            ("help", lambda: self.help_pressed()),
-            ("settings", lambda: self.settings_pressed()),
-            ("credits", lambda: self.credits_pressed()),
-            ("exit", lambda: self.exit_pressed())
+            ("empezar", lambda: self.start_pressed()),
+            ("ayuda", lambda: self.help_pressed()),
+            ("volver al menú", lambda: self.exit_pressed())
         ]
 
         self.title_font = fonts.get_font(config.FontSize.title)
@@ -256,9 +197,9 @@ class MainMenuMode(GameMode):
 def create_or_recreate_window():
     size = config.Display.width, config.Display.height
 
-    pygame.display.set_mode(size)
+    pygame.display.set_mode(size, pygame.SCALED | pygame.RESIZABLE)
     pygame.display.set_caption(config.Display.title)
-    pygame.display.set_icon(pygame.image.load(utils.resource_path("pygame-summer-team-jam-main/assets/icon/icon.png")))
+    pygame.display.set_icon(pygame.image.load(utils.resource_path("assets/icon/icon.png")))
 
 
 def _main():

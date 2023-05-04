@@ -1,11 +1,12 @@
+#!/usr/bin/python
+#-*- coding:latin-1 -*-
 import pygame
 import keybinds
 from sound_manager.SoundManager import SoundManager
 import time
-import main
+
 import util.fonts as fonts
-import os
-import json
+
 
 class Player:
     def __init__(self, x=0, y=0, z=0):
@@ -63,24 +64,24 @@ class Player:
                 return self._obstacle_that_killed_me.get_death_message()
             else:
                 # should never be seen
-                return "player was killed by the guardians"
+                return "el jugador fue asesinado por los guardianes"
         else:
             congrat_msgs = {
-                2000: "Good attempt!",
-                3000: "You can do better!",
-                4000: "Is that all you got?",
-                5000: "You're getting the hang of it now!",
-                7500: "Great run!",
-                10000: "Excellent run!",
-                15000: "Super run!",
-                20000: "Amazing run!",
+                2000: "¡Buen intento!",
+                3000: "¡Puedes hacerlo mejor!",
+                4000: "¿Eso es todo lo que tienes?",
+                5000: "Lo estas haciendo bien.",
+                7500: "¡Buena partida!",
+                10000: "¡Excelente partida!",
+                15000: "¡Super Partida!",
+                20000: "¡Increible!",
             }
 
             for score_thresh in congrat_msgs:
                 if self.get_score() < score_thresh:
                     return congrat_msgs[score_thresh]
 
-            return "Epic run!"
+            return "¡Epica carrera!"
 
     def move_left(self):
         if not self.is_dead():
@@ -132,37 +133,17 @@ class Player:
     def _handle_inputs(self, events, pressed):
         for e in events:
             if e.type == pygame.KEYDOWN:
-                if e.key in keybinds.JUMP or main.up:
+                if e.key in keybinds.JUMP:
                     self.jump()
-                if e.key or e.button in keybinds.LEFT:
+                if e.key in keybinds.LEFT:
                     self.move_left()
-                if e.key or e.button in keybinds.RIGHT:
+                if e.key in keybinds.RIGHT:
                     self.move_right()
-                if e.key or e.button in keybinds.SLIDE:
+                if e.key in keybinds.SLIDE:
                     self.slide()
             elif e.type == pygame.KEYUP:
                 if e.key in keybinds.SLIDE and self.is_sliding():
                     self.run()
-            joysticks = []
-            for i in range(pygame.joystick.get_count()):
-                joysticks.append(pygame.joystick.Joystick(i))
-
-            for joystick in joysticks:
-                joystick.init()
-
-            with open(os.path.join(os.getcwd(), "ps4_keys.json"), "r+") as file:
-                button_keys = json.load(file)
-
-            analog_keys = {0:0, 1:0,2:0,3:0,4:-1, 5:-1}
-            if e.type == pygame.JOYBUTTONDOWN:
-                if e.button == button_keys['left_arrow']:
-                    self.move_left()                
-                if e.button == button_keys['right_arrow']:
-                    self.move_right()
-                if e.button == button_keys['up_arrow']:
-                    self.jump()
-                if e.button == button_keys['down_arrow']:
-                    self.slide()
 
         if any(pressed[k] for k in keybinds.SLIDE):
             self.slide()

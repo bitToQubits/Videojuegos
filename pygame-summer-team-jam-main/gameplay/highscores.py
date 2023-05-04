@@ -25,7 +25,7 @@ def save_score():
         with open(path, "w") as f:
             f.write("# no hacking allowed >:)\n{} \n".format(ciphertext))
     except Exception:
-        print("ERROR: failed to save high score")
+        print("ERROR: no se ha podido guardar.")
         traceback.print_exc()
 
 
@@ -40,9 +40,9 @@ def load_score():
                     global _BEST_SCORE
                     _BEST_SCORE = num // neon.key
                 else:
-                    print("WARN: high score didn't validate... sus")
+                    print("WARN: puntaje alto no validado.")
     except Exception:
-        print("ERROR: failed to load high score")
+        print("ERROR: fallo para generar el mayor puntaje")
         traceback.print_exc()
 
 
