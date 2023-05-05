@@ -12,6 +12,7 @@ from sound_manager.SoundManager import SoundManager
 import rendering.levelbuilder3d as levelbuilder3d
 import gameplay.highscores as highscores
 import util.utility_functions as utils
+import time
 
 
 TARGET_FPS = config.Display.fps if not config.Debug.fps_test else -1
@@ -69,7 +70,6 @@ class GameMode:
 
     def __init__(self, loop: GameLoop):
         self.loop: GameLoop = loop
-        SoundManager.play('start_elison')
 
     def on_mode_start(self):
         """Called when mode becomes active"""
@@ -108,7 +108,7 @@ class MainMenuMode(GameMode):
         self.bg_renderer = neon.NeonRenderer()
 
     def on_mode_start(self):
-        SoundManager.play_song("menu_theme", fadein_ms=0)
+        SoundManager.play_song("menu_theme", fadein_ms=3000)
 
     def start_pressed(self):
         import gameplay.gamestuff  # shh don't tell pylint about this
@@ -211,6 +211,7 @@ def _main():
 
     pygame.init()
     SoundManager.init()
+    SoundManager.play('start_elison')
     levelbuilder3d.load_player_art()
     create_or_recreate_window()
     highscores.load_score()
