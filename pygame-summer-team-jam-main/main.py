@@ -212,6 +212,7 @@ def _main():
     pygame.init()
     SoundManager.init()
     SoundManager.play('start_elison')
+    SoundManager.play('start_elison_2')
     levelbuilder3d.load_player_art()
     create_or_recreate_window()
     highscores.load_score()
