@@ -1,6 +1,5 @@
 #!/usr/bin/python
-#-*- encoding: latin-1 -*-
-
+# -*- coding: latin-1 -*-
 import pygame
 
 import keybinds
@@ -12,7 +11,6 @@ from sound_manager.SoundManager import SoundManager
 import rendering.levelbuilder3d as levelbuilder3d
 import gameplay.highscores as highscores
 import util.utility_functions as utils
-import time
 
 
 TARGET_FPS = config.Display.fps if not config.Debug.fps_test else -1
@@ -94,7 +92,7 @@ class MainMenuMode(GameMode):
         self.options = [
             ("empezar", lambda: self.start_pressed()),
             ("ayuda", lambda: self.help_pressed()),
-            ("volver al menú", lambda: self.exit_pressed())
+            ("volver al menu", lambda: self.exit_pressed())
         ]
 
         self.title_font = fonts.get_font(config.FontSize.title)
@@ -212,7 +210,6 @@ def _main():
     pygame.init()
     SoundManager.init()
     SoundManager.play('start_elison')
-    SoundManager.play('start_elison_2')
     levelbuilder3d.load_player_art()
     create_or_recreate_window()
     highscores.load_score()

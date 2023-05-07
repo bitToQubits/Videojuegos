@@ -25,9 +25,9 @@ class SoundManager:
         'accept': 'assets/sounds/accept',
         'blip': 'assets/sounds/blip',
         'blip2': 'assets/sounds/blip2',
-        'start_elison':'assets/sounds/start_elison'
+        'start_elison':'assets/sounds/start_elison',
     }
-    PRIORITIES = ['start_elison','accept', 'death', 'jump', 'kill', 'blip2', 'blip']
+    PRIORITIES = ['accept', 'death', 'jump', 'kill', 'blip2', 'blip','start_elison']
 
     LOADED_SOUNDS = {}
 
@@ -35,7 +35,7 @@ class SoundManager:
     CHANNEL: pygame.mixer.Channel = None
 
     SONG_PATHS = {
-        "menu_theme": "assets/songs/menu_theme.ogg",
+        "menu_theme": "assets/songs/menu_theme.wav",
         "game_theme": "assets/songs/game_theme.ogg"
     }
     CURRENT_SONG_ID: str = None
@@ -47,7 +47,8 @@ class SoundManager:
     @classmethod
     def init(cls):
         print("INFO: initializing pygame.mixer...")
-        pygame.mixer.init()
+        pygame.mixer.pre_init(44100,-16,2, 1024)
+        pygame.mixer.init(buffer=512)
         print("INFO: done.")
 
         cls.CHANNEL = pygame.mixer.Channel(1)
