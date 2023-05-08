@@ -9,11 +9,11 @@ image = tk.PhotoImage(file='elison pixel (1).png')
 from tkinter.ttk import Style, Label
 
 style = Style()
-style.configure('Neon.TLabel', foreground='white', font=('Helvetica', 30, 'bold'),
+style.configure('Neon.TLabel', foreground='white', font=('Helvetica', 80, 'bold'),
                 anchor='center', borderwidth=0, padding=(10, 10, 10, 10),
                 background='black')
 
-text = Label(root, text="Gracias por jugar nuestro Arcade. Hasta la próxima!",
+text = Label(root, text="Gracias por jugar nuestro Arcade. ¡Hasta la próxima!",
              image=image, compound='left', style='Neon.TLabel',)
 
 text.pack(pady=25)
