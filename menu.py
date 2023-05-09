@@ -1,31 +1,74 @@
 import pygame
 
-# Initialize pygame
+
 pygame.init()
-pygame.joystick.init()
-joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
+pygame.mixer.init()
+WIDTH = 800
+HEIGHT = 600
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Teclado para el arcade")
 
-# Set up the screen
-screen = pygame.display.set_mode((500, 500))
-pygame.display.set_caption("My Game")
 
-# Game loop
+font = pygame.font.SysFont('comicsansms', 24)
+
+
+#key_sound = pygame.mixer.Sound('key_sound.wav')
+
+
+letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+buttons = letters + numbers + [' ', 'BORRAR']
+
+button_rects = {}
+x, y = 50, 50
+for button in buttons:
+    text = font.render(button, True, (255, 255, 255))
+    rect = text.get_rect()
+    rect.center = (x, y)
+    button_rects[button] = rect
+    x += 50
+    if x > 750:
+        x = 50
+        y += 50
+
+
+cursor_position = 0
+
+
+def draw_screen():
+    for button in buttons:
+        if button == 'BORRAR':
+            text = font.render(button, True, (255, 0, 0))
+        else:
+            text = font.render(button, True, (255, 255, 255))
+        rect = button_rects[button]
+        screen.blit(text, rect)
+    pygame.display.update()
+
+
 running = True
 while running:
-    # Handle events
+
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        if event.type == pygame.JOYBUTTONDOWN:
-            print(event)
-            
-    
-    # Update the game
-    
-    # Draw the screen
-    screen.fill((255, 255, 255))
-    pygame.display.flip()
-
-# Quit pygame
-pygame.quit()
-
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                cursor_position -= 1
+                if cursor_position < 0:
+                    cursor_position = len(buttons) - 1
+            elif event.key == pygame.K_RIGHT:
+                cursor_position += 1
+                if cursor_position >= len(buttons):
+                    cursor_position = 0
+            elif event.key == pygame.K_UP:
+                cursor_position -= 10
+                if cursor_position < 0:
+                    cursor_position = len(buttons) - 1
+            elif event.key == pygame.K_DOWN:
+                cursor_position += 10
+                if cursor_position >= len(buttons):
+                    cursor_position = 0
+            elif event.key == pygame.K_RETURN:
+                selected_button = buttons[cursor_position]
