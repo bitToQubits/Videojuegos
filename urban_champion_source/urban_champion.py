@@ -59,7 +59,7 @@ def pause(surface, uc_font):
     #pygame.mixer.music.pause()
     uc_font.font = uc_font.gray_font
     uc_font.size = uc_font.normal_size
-    text = uc_font.render(" pause ")
+    text = uc_font.render(" pausa ")
     scaled_size = [text.get_width()*SCALE, text.get_height()*SCALE]
     text = pygame.transform.scale(text, scaled_size)
     text_pos = [int(SCREEN_WIDTH/2) - int(text.get_width()/2), 430]
@@ -94,7 +94,7 @@ def title_screen(image, screen, display_surface, uc_font):
     text1 = uc_font.render(" by raytomely ")
     text1_pos = [int(256/2) - int(text1.get_width()/2) + 4, 198]
     uc_font.font = uc_font.pink_font
-    text2 = uc_font.render("game c    com vs com")
+    text2 = uc_font.render("Modo C    com vs com")
     text2_pos = [44, 182]
     while True:
         pygame.time.Clock().tick(30)
@@ -1426,7 +1426,7 @@ def main():
     display_surface = pygame.Surface(NES_RESOLUTION).convert()
     scaled_display_surface = pygame.transform.scale(display_surface,(640,480))
     #Title
-    pygame.display.set_caption("Urban Champion")
+    pygame.display.set_caption("Rage")
     #icon
     icon = pygame.Surface((1, 1))
     icon.set_alpha(0)
