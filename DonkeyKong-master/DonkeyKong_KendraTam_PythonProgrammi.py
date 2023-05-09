@@ -745,8 +745,6 @@ while replay:
     
     #start creating a graphical program
     pygame.init()
-    pygame.joystick.init()
-    joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
     walk = pygame.mixer.Sound("DonkeyKong-master/walking\\walking.wav")
     jump = pygame.mixer.Sound("DonkeyKong-master/jump\\jump.wav")
     intro = pygame.mixer.Sound("DonkeyKong-master/intro1\\intro1.wav")
@@ -1207,14 +1205,14 @@ while replay:
             replay = False
         
         #looks for space to be pressed to make pressed True and start the game
-        if keys[pygame.K_SPACE] or pygame.joystick.Joystick(0).get_button(12):
+        if keys[pygame.K_SPACE]:
             pressed = True
         
         #must satisfy all these conditions in order for pressing  the left, right, up, down, space(for jumping), and return key to do anything
         if (gameStart and jumpLeft == False and jumpRight == False and jumpStill == False and winLevel == False and hit == False) or gameDone or winGame:      
             
             #looks for left arrow to be pressed
-            if keys[pygame.K_LEFT] or pygame.joystick.Joystick(0).get_button(7) and moveSides and (marioX != 320 or marioY > 232) and moveLeft and marioX != 60:
+            if keys[pygame.K_LEFT] and moveSides and (marioX != 320 or marioY > 232) and moveLeft and marioX != 60:
                 #changes mario's y to incline up/go down with the slope
                 marioY = incline(marioY, marioX, direction, "mario")
                 
@@ -1230,14 +1228,14 @@ while replay:
                     marioImage = marioLeft
                     
                 #if space is pressed while left is also being pressed, jumpLeft is True and change the image 
-                if keys[pygame.K_SPACE] or pygame.joystick.Joystick(0).get_button(12):
+                if keys[pygame.K_SPACE]:
                     jumpLeft = True
                     marioImage = marioJumpLeft
                 
                 direction = "left"
             
             #looks for right arrow to be pressed   
-            elif keys[pygame.K_RIGHT] or pygame.joystick.Joystick(0).get_button(5) and moveSides and moveRight and marioX != 710:
+            elif keys[pygame.K_RIGHT] and moveSides and moveRight and marioX != 710:
                 #changes mario's y to incline up/go down with the slope
                 marioY = incline(marioY, marioX, direction, "mario")
                 
@@ -1253,14 +1251,14 @@ while replay:
                     marioImage = marioRight
                 
                 #if space is pressed while right is also being pressed, jumpRight is True and change the image
-                if keys[pygame.K_SPACE] or pygame.joystick.Joystick(0).get_button(12):
+                if keys[pygame.K_SPACE]:
                     jumpRight = True
                     marioImage = marioJumpRight
                 
                 direction = "right"
             
             #looks for up arrow to be pressed   
-            elif keys[pygame.K_UP] or pygame.joystick.Joystick(0).get_button(4) and (upLadder or gameDone or winGame):
+            elif keys[pygame.K_UP] and (upLadder or gameDone or winGame):
                 # if upLadder is true, move mario up 5 pixels
                 if upLadder:
                     marioY = marioY - 5
@@ -1294,7 +1292,7 @@ while replay:
                     option = "bottom"
             
             #looks for space bar to be pressed and can only do something when mario already jumping left or right and you're not in the middle of a ladder
-            if keys[pygame.K_SPACE] or pygame.joystick.Joystick(0).get_button(12) and jumpLeft == False and jumpRight == False and moveSides:
+            if keys[pygame.K_SPACE] and jumpLeft == False and jumpRight == False and moveSides:
                 #it makes jumpStil true
                 jumpStill = True
                 

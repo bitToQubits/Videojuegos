@@ -104,79 +104,79 @@ confettiSpeed = []
 confettiColour = []
 
 #Define Images
-title = pygame.image.load("DonkeyKong-master/title-screen.png")
-start = pygame.image.load("DonkeyKong-master/start.png")
-winScreen = pygame.image.load("DonkeyKong-master/win-screen.png")
-gameOverScreen = pygame.image.load("DonkeyKong-master/game-over-screen.png")
+title = pygame.image.load("title-screen.png")
+start = pygame.image.load("start.png")
+winScreen = pygame.image.load("win-screen.png")
+gameOverScreen = pygame.image.load("game-over-screen.png")
 
-selectIcon = pygame.image.load("DonkeyKong-master/select-icon.png")
-life = pygame.image.load("DonkeyKong-master/mario-life.png")
+selectIcon = pygame.image.load("select-icon.png")
+life = pygame.image.load("mario-life.png")
 
-withLadder = pygame.image.load("DonkeyKong-master/withLadder.png")
-platform0 = pygame.image.load("DonkeyKong-master/platform0.png")
-platform1 = pygame.image.load("DonkeyKong-master/platform1.png")
-platform2 = pygame.image.load("DonkeyKong-master/platform2.png")
-platform3 = pygame.image.load("DonkeyKong-master/platform3.png")
-platform4 = pygame.image.load("DonkeyKong-master/platform4.png")
-platform5 = pygame.image.load("DonkeyKong-master/platform5.png")
-platform6 = pygame.image.load("DonkeyKong-master/platform6.png")
+withLadder = pygame.image.load("withLadder.png")
+platform0 = pygame.image.load("platform0.png")
+platform1 = pygame.image.load("platform1.png")
+platform2 = pygame.image.load("platform2.png")
+platform3 = pygame.image.load("platform3.png")
+platform4 = pygame.image.load("platform4.png")
+platform5 = pygame.image.load("platform5.png")
+platform6 = pygame.image.load("platform6.png")
 platforms = [platform0, platform1, platform2, platform3, platform4, platform5, platform6]
-level = pygame.image.load("DonkeyKong-master/level.png")
+level = pygame.image.load("level.png")
 
-blue0 = pygame.image.load("DonkeyKong-master/blue0.png")
-blue1 = pygame.image.load("DonkeyKong-master/blue1.png")
-blue2 = pygame.image.load("DonkeyKong-master/blue2.png")
-blue3 = pygame.image.load("DonkeyKong-master/blue3.png")
-blue4 = pygame.image.load("DonkeyKong-master/blue4.png")
-blue5 = pygame.image.load("DonkeyKong-master/blue5.png")
+blue0 = pygame.image.load("blue0.png")
+blue1 = pygame.image.load("blue1.png")
+blue2 = pygame.image.load("blue2.png")
+blue3 = pygame.image.load("blue3.png")
+blue4 = pygame.image.load("blue4.png")
+blue5 = pygame.image.load("blue5.png")
 blueNumbers = [blue0, blue1, blue2, blue3, blue4, blue5]
-white0 = pygame.image.load("DonkeyKong-master/white0.png")
-white1 = pygame.image.load("DonkeyKong-master/white1.png")
-white2 = pygame.image.load("DonkeyKong-master/white2.png")
-white3 = pygame.image.load("DonkeyKong-master/white3.png")
-white4 = pygame.image.load("DonkeyKong-master/white4.png")
-white5 = pygame.image.load("DonkeyKong-master/white5.png")
-white6 = pygame.image.load("DonkeyKong-master/white6.png")
-white7 = pygame.image.load("DonkeyKong-master/white7.png")
-white8 = pygame.image.load("DonkeyKong-master/white8.png")
-white9 = pygame.image.load("DonkeyKong-master/white9.png")
+white0 = pygame.image.load("white0.png")
+white1 = pygame.image.load("white1.png")
+white2 = pygame.image.load("white2.png")
+white3 = pygame.image.load("white3.png")
+white4 = pygame.image.load("white4.png")
+white5 = pygame.image.load("white5.png")
+white6 = pygame.image.load("white6.png")
+white7 = pygame.image.load("white7.png")
+white8 = pygame.image.load("white8.png")
+white9 = pygame.image.load("white9.png")
 whiteNumbers = [white0, white1, white2, white3, white4, white5, white6, white7, white8, white9]
 
-marioLeft = pygame.image.load("DonkeyKong-master/mario-left.png")
-marioRight = pygame.image.load("DonkeyKong-master/mario-right.png")
-runLeft = pygame.image.load("DonkeyKong-master/run-left.png")
-runRight = pygame.image.load("DonkeyKong-master/run-right.png")
-marioJumpLeft = pygame.image.load("DonkeyKong-master/jump-left.png")
-marioJumpRight = pygame.image.load("DonkeyKong-master/jump-right.png")
-marioClimb1 = pygame.image.load("DonkeyKong-master/marioClimb1.png")
-marioClimb2 = pygame.image.load("DonkeyKong-master/marioClimb2.png")
-dead = pygame.image.load("DonkeyKong-master/dead.png")
+marioLeft = pygame.image.load("mario-left.png")
+marioRight = pygame.image.load("mario-right.png")
+runLeft = pygame.image.load("run-left.png")
+runRight = pygame.image.load("run-right.png")
+marioJumpLeft = pygame.image.load("jump-left.png")
+marioJumpRight = pygame.image.load("jump-right.png")
+marioClimb1 = pygame.image.load("marioClimb1.png")
+marioClimb2 = pygame.image.load("marioClimb2.png")
+dead = pygame.image.load("dead.png")
 marioImage = marioRight
 
-paulineHelp = pygame.image.load("DonkeyKong-master/pauline-help.png")
-paulineStill = pygame.image.load("DonkeyKong-master/pauline-still.png")
+paulineHelp = pygame.image.load("pauline-help.png")
+paulineStill = pygame.image.load("pauline-still.png")
 
-dkUp1 = pygame.image.load("DonkeyKong-master/DK_up1.png")
-dkUp2 = pygame.image.load("DonkeyKong-master/DK_up2.png")
-dkEmptyClimb1 = pygame.image.load("DonkeyKong-master/dkClimbEmpty1.png")
-dkEmptyClimb2 = pygame.image.load("DonkeyKong-master/dkClimbEmpty2.png")
-dkForward = pygame.image.load("DonkeyKong-master/dkForward.png")
-dkLeft = pygame.image.load("DonkeyKong-master/dkLeft.png")
-dkRight = pygame.image.load("DonkeyKong-master/dkRight.png")
-dkDefeat = pygame.image.load("DonkeyKong-master/DK-defeat.png")
+dkUp1 = pygame.image.load("DK_up1.png")
+dkUp2 = pygame.image.load("DK_up2.png")
+dkEmptyClimb1 = pygame.image.load("dkClimbEmpty1.png")
+dkEmptyClimb2 = pygame.image.load("dkClimbEmpty2.png")
+dkForward = pygame.image.load("dkForward.png")
+dkLeft = pygame.image.load("dkLeft.png")
+dkRight = pygame.image.load("dkRight.png")
+dkDefeat = pygame.image.load("DK-defeat.png")
 dkImage = dkForward
 
-barrelStack = pygame.image.load("DonkeyKong-master/barrel-stack.png")
-barrelDown = pygame.image.load("DonkeyKong-master/barrel-down.png")
-barrel1 = pygame.image.load("DonkeyKong-master/barrel1.png")
-barrel2 = pygame.image.load("DonkeyKong-master/barrel2.png")
-barrel3 = pygame.image.load("DonkeyKong-master/barrel3.png")
-barrel4 = pygame.image.load("DonkeyKong-master/barrel4.png")
+barrelStack = pygame.image.load("barrel-stack.png")
+barrelDown = pygame.image.load("barrel-down.png")
+barrel1 = pygame.image.load("barrel1.png")
+barrel2 = pygame.image.load("barrel2.png")
+barrel3 = pygame.image.load("barrel3.png")
+barrel4 = pygame.image.load("barrel4.png")
 barrelSequence = [barrel1, barrel2, barrel3, barrel4]
 barrelPic = []
 
-brokenHeart = pygame.image.load("DonkeyKong-master/broken-heart.png")
-fullHeart = pygame.image.load("DonkeyKong-master/full-heart.png")
+brokenHeart = pygame.image.load("broken-heart.png")
+fullHeart = pygame.image.load("full-heart.png")
 clock = pygame.time.Clock()
 #declares values for 400 confetti pieces
 for i in range(0, 400):
@@ -710,17 +710,17 @@ def redraw_screen():
 
 
 #prints instructions on console
-pygame.joystick.init()
-joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
+#pygame.joystick.init()
+#joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
 instructions()
 #os.environ['SDL_VIDEO_CENTERED'] = '1'
 pygame.init()
 #loop whole game if user wants to keep restarting
-walk = pygame.mixer.Sound("DonkeyKong-master/walking\\walking.wav")
-jump = pygame.mixer.Sound("DonkeyKong-master/jump\\jump.wav")
-intro = pygame.mixer.Sound("DonkeyKong-master/intro1\\intro1.wav")
-death = pygame.mixer.Sound("DonkeyKong-master/death\\death.wav")
-bac = pygame.mixer.music.load("DonkeyKong-master/bacmusic\\bacmusic.wav")
+walk = pygame.mixer.Sound("walking\\walking.wav")
+jump = pygame.mixer.Sound("jump\\jump.wav")
+intro = pygame.mixer.Sound("intro1\\intro1.wav")
+death = pygame.mixer.Sound("death\\death.wav")
+bac = pygame.mixer.music.load("bacmusic\\bacmusic.wav")
 death_cnt = 0
 #start creating a graphical program
 #Set Screen Dimensions
@@ -728,7 +728,7 @@ window_width = 800
 window_height = 800
 info = pygame.display.Info()
 #screen_width, screen_height = info.current_w,info.current_h
-screen = pygame.display.set_mode((window_width,window_width))
+screen = pygame.display.set_mode((window_width,window_width), pygame.FULLSCREEN)
 
 #Name of Window Opened
 pygame.display.set_caption('Donkey Kong')
@@ -1188,7 +1188,7 @@ while replay:
             replay = False
         
         #looks for space to be pressed to make pressed True and start the game
-        if pygame.joystick.Joystick(0).get_button(12):
+        if keys[pygame.K_SPACE]:
             pressed = True
             if not pygame.mixer.get_busy():
                 pygame.mixer.Sound.play(intro)
@@ -1199,7 +1199,7 @@ while replay:
         if (gameStart and jumpLeft == False and jumpRight == False and jumpStill == False and winLevel == False and hit == False) or gameDone or winGame:      
             
             #looks for left arrow to be pressed
-            if pygame.joystick.Joystick(0).get_button(8) and moveSides and (marioX != 320 or marioY > 232) and moveLeft and marioX != 60:
+            if keys[pygame.K_LEFT] and moveSides and (marioX != 320 or marioY > 232) and moveLeft and marioX != 60:
                 #changes mario's y to incline up/go down with the slope
                 marioY = incline(marioY, marioX, direction, "mario")
                 # if mario is already facing left, subtract 5 from marioX
@@ -1218,7 +1218,7 @@ while replay:
                     marioImage = marioLeft
                     
                 #if space is pressed while left is also being pressed, jumpLeft is True and change the image 
-                if pygame.joystick.Joystick(0).get_button(12):
+                if keys[pygame.K_LEFT]:
                     jumpLeft = True
                     marioImage = marioJumpLeft
                     # if not pygame.mixer.get_busy():
@@ -1227,7 +1227,7 @@ while replay:
                 
                 direction = "left"
             #looks for right arrow to be pressed   
-            elif pygame.joystick.Joystick(0).get_button(6) and moveSides and moveRight and marioX != 710:
+            elif keys[pygame.K_RIGHT] and moveSides and moveRight and marioX != 710:
                 #changes mario's y to incline up/go down with the slope
                 marioY = incline(marioY, marioX, direction, "mario")
                 
@@ -1244,7 +1244,7 @@ while replay:
                     marioImage = marioRight
                 
                 #if space is pressed while right is also being pressed, jumpRight is True and change the image
-                if pygame.joystick.Joystick(0).get_button(12):
+                if keys[pygame.K_SPACE]:
                     jumpRight = True
                     marioImage = marioJumpRight
                     pygame.mixer.Sound.stop(walk)
@@ -1252,9 +1252,8 @@ while replay:
                 direction = "right"
             
             #looks for up arrow to be pressed   
-            elif not pygame.joystick.Joystick(0).get_button(8) or not pygame.joystick.Joystick(0).get_button(6):
+            elif keys[pygame.K_UP] and (upLadder or gameDone or winGame):
                 pygame.mixer.Sound.stop(walk)
-            if keys[pygame.K_UP] and (upLadder or gameDone or winGame):
                 # if upLadder is true, move mario up 5 pixels
                 if upLadder:
                     marioY = marioY - 5
@@ -1271,7 +1270,7 @@ while replay:
                     option = "top"
             
             #looks for down arrow to be pressed and only excutes when you can go down a ladder, and to sele
-            if pygame.joystick.Joystick(0).get_button(7) and (downLadder or gameDone or winGame):
+            if keys[pygame.K_DOWN] and (downLadder or gameDone or winGame):
                 #if downLadder is true, change mario's y coordinates to go down
                 if downLadder:
                     marioY = marioY + 5
@@ -1288,7 +1287,7 @@ while replay:
                     option = "bottom"
             
             #looks for space bar to be pressed and can only do something when mario already jumping left or right and you're not in the middle of a ladder
-            if pygame.joystick.Joystick(0).get_button(12) and jumpLeft == False and jumpRight == False and moveSides:
+            if keys[pygame.K_UP] and jumpLeft == False and jumpRight == False and moveSides:
                 #it makes jumpStil true
                 jumpStill = True
                 

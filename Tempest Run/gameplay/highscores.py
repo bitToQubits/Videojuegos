@@ -4,7 +4,7 @@ import rendering.neon as neon
 
 _BEST_SCORE = 0
 
-
+ 
 def add_new_score(score, and_save=True):
     global _BEST_SCORE
     _BEST_SCORE = max(score, _BEST_SCORE)
