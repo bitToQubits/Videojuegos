@@ -1,7 +1,6 @@
 import pygame,sys,random
 from pygame.locals import *
 
-
 BLACK=pygame.color.THECOLORS["black"]
 WHITE=pygame.color.THECOLORS["white"]
 RED=pygame.color.THECOLORS["red"]
@@ -18,7 +17,6 @@ TITLE_SCREEN = 0
 P1_VS_COM = 1
 P1_VS_P2 = 2
 COM_VS_COM = 3
-
 
 def load_sprite_data(sprite_file):
     sprites = {'rect':[], 'axis_shift':[], 'offense_box':[], 'defense_box':[]}
