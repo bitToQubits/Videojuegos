@@ -30,6 +30,9 @@ class GameData:
         self.level = 1
         self.anger = 0
 
+    def reset_anger(self):
+        self.anger = 0
+
     def reset(self):
         self.scroll = []
         self.lollipops = []
@@ -469,8 +472,6 @@ class Player(Entity):
         if collisions['left'] or collisions['right']:
             self.velocity[0] = 0
 
-        print(self.angry, self.hurt_timer)
-
 def end_screen(gd):
     state = 0
     max_state = False
@@ -494,7 +495,7 @@ def end_screen(gd):
                 if event.key == K_ESCAPE:
                     pygame.quit()
                     sys.exit()
-                if event.key in [K_s, K_r]:
+                if event.key == K_SPACE:
                     closing = True
                     sounds['blip'].play()
 
@@ -503,8 +504,8 @@ def end_screen(gd):
         t2 = str(min(gd.level, max(state - 20, 0) // 4))
         font_white.render(t2, display, (display.get_width() // 2 - font_white.width(t2) // 2, display.get_height() // 2 - 40))
 
-        t3 = 'press down to continue'[:max(state - (20 + gd.level * 4), 0) // 4]
-        if t3 == 'press down to continue':
+        t3 = 'press [x] to continue'[:max(state - (20 + gd.level * 4), 0) // 4]
+        if t3 == 'press [x] to continue':
             max_state = True
 
         font_white.render(t3, display, (display.get_width() // 2 - font_white.width(t3) // 2, display.get_height() // 2 + 20))
@@ -820,6 +821,8 @@ while True:
     if gd.completed_level and gd.transition_state == 1:
         gd.level += 1
         next_level()
+        gd.reset_anger()
+        print("Completed Level!")
 
     # leaves
     for particle in gd.leaves.copy():
