@@ -341,7 +341,6 @@ class Player(Entity):
 
     def update(self, gd):
         super().update(1 / 60)
-
         if self.angry > 0:
             self.angry -= 1
 
@@ -470,6 +469,8 @@ class Player(Entity):
         if collisions['left'] or collisions['right']:
             self.velocity[0] = 0
 
+        print(self.angry, self.hurt_timer)
+
 def end_screen(gd):
     state = 0
     max_state = False
@@ -493,7 +494,7 @@ def end_screen(gd):
                 if event.key == K_ESCAPE:
                     pygame.quit()
                     sys.exit()
-                if event.key in [K_s, K_DOWN]:
+                if event.key in [K_s, K_r]:
                     closing = True
                     sounds['blip'].play()
 
@@ -516,7 +517,7 @@ def end_screen(gd):
 pygame.init()
 pygame.display.set_caption('Explon\'t')
 
-screen = pygame.display.set_mode((640, 480), 0, 32)
+screen = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
 display = pygame.Surface((320, 240))
 base_display = display.copy()
 display.set_colorkey((0, 0, 0))
@@ -573,6 +574,7 @@ levels = [m.split('.')[0] for m in os.listdir('data/maps')]
 
 def next_level():
     gd.load_map(random.choice(levels))
+    
 
 next_level()
 
