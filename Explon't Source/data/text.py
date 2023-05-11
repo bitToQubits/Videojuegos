@@ -32,6 +32,7 @@ class Font():
         self.space_width = self.letter_spacing[0]
         self.base_spacing = 1
         self.line_spacing = 2
+        print(path)
 
     def width(self, text):
         text_width = 0
@@ -40,6 +41,7 @@ class Font():
                 text_width += self.space_width + self.base_spacing
             else:
                 text_width += self.letter_spacing[self.font_order.index(char)] + self.base_spacing
+                print(text_width, self.letter_spacing, self.font_order.index(char))
         return text_width
 
     def render(self, text, surf, loc, line_width=0):

@@ -499,13 +499,13 @@ def end_screen(gd):
                     closing = True
                     sounds['blip'].play()
 
-        t1 = 'score'[:state // 4]
+        t1 = 'Puntaje'[:state // 4]
         font_white.render(t1, display, (display.get_width() // 2 - font_white.width(t1) // 2, display.get_height() // 2 - 60))
         t2 = str(min(gd.level, max(state - 20, 0) // 4))
         font_white.render(t2, display, (display.get_width() // 2 - font_white.width(t2) // 2, display.get_height() // 2 - 40))
 
-        t3 = 'press [x] to continue'[:max(state - (20 + gd.level * 4), 0) // 4]
-        if t3 == 'press [x] to continue':
+        t3 = 'presiona (x) para continuar'[:max(state - (20 + gd.level * 4), 0) // 4]
+        if t3 == 'presiona (x) para continuar':
             max_state = True
 
         font_white.render(t3, display, (display.get_width() // 2 - font_white.width(t3) // 2, display.get_height() // 2 + 20))
@@ -975,7 +975,7 @@ while True:
     if gd.level_notice:
         gd.level_notice -= 0.01
         gd.level_notice = max(0, gd.level_notice)
-        text = 'level ' + str(gd.level)
+        text = 'nivel ' + str(gd.level)
         w = font_white.width(text)
         if gd.level_notice > 0.8:
             l_pos = (display.get_width() // 2 - w // 2, display.get_height() // 2 - 16 - display.get_height() // 2 * (gd.level_notice - 0.8) * 5)
@@ -997,11 +997,11 @@ while True:
             tutorial_x += (display.get_width() + 150 - tutorial_x) / 20
         l_pos = (tutorial_x, display.get_height() // 4 - 8 + (global_time % 60) // 40)
         display.blit(lollipop_img, (tutorial_x - 20, l_pos[1]))
-        font_black.render('collect', display, (l_pos[0] - 1, l_pos[1]))
-        font_black.render('collect', display, (l_pos[0] + 1, l_pos[1]))
-        font_black.render('collect', display, (l_pos[0], l_pos[1] + 1))
-        font_black.render('collect', display, (l_pos[0], l_pos[1] - 1))
-        font_white.render('collect', display, l_pos)
+        font_black.render('colecta', display, (l_pos[0] - 1, l_pos[1]))
+        font_black.render('colecta', display, (l_pos[0] + 1, l_pos[1]))
+        font_black.render('colecta', display, (l_pos[0], l_pos[1] + 1))
+        font_black.render('colecta', display, (l_pos[0], l_pos[1] - 1))
+        font_white.render('colecta', display, l_pos)
 
 
     if gd.transition_state:
