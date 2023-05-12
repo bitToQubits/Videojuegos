@@ -489,17 +489,15 @@ def end_screen(gd):
 
         for event in pygame.event.get():
             if event.type == QUIT:
-                pygame.quit()
-                sys.exit()
+                import menu
             if event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
-                    pygame.quit()
-                    sys.exit()
+                    import menu
                 if event.key == K_SPACE:
                     closing = True
                     sounds['blip'].play()
 
-        t1 = 'Puntaje'[:state // 4]
+        t1 = 'Puntaje '[:state // 4]
         font_white.render(t1, display, (display.get_width() // 2 - font_white.width(t1) // 2, display.get_height() // 2 - 60))
         t2 = str(min(gd.level, max(state - 20, 0) // 4))
         font_white.render(t2, display, (display.get_width() // 2 - font_white.width(t2) // 2, display.get_height() // 2 - 40))
@@ -516,6 +514,7 @@ def end_screen(gd):
 
 
 pygame.init()
+pygame.mouse.set_visible(False)
 pygame.display.set_caption('Explon\'t')
 
 screen = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
@@ -582,7 +581,7 @@ next_level()
 global_time = 0
 tutorial_x = -100
 
-sounds['ambience'].play(-1)
+#sounds['ambience'].play(-1)
 
 pygame.mixer.music.load('data/music.ogg')
 pygame.mixer.music.set_volume(0.5)
@@ -699,13 +698,9 @@ while True:
                 display.blit(img, (tile[0][0] - gd.scroll[0] + offset[0], tile[0][1] - gd.scroll[1] + offset[1]))
 
     for event in pygame.event.get():
-        if event.type == QUIT:
-            pygame.quit()
-            sys.exit()
         if event.type == KEYDOWN:
             if event.key == K_ESCAPE:
-                pygame.quit()
-                sys.exit()
+                import menu
             if event.key in [K_LEFT, K_a]:
                 gd.input[0] = True
             if event.key in [K_RIGHT, K_d]:
@@ -822,7 +817,6 @@ while True:
         gd.level += 1
         next_level()
         gd.reset_anger()
-        print("Completed Level!")
 
     # leaves
     for particle in gd.leaves.copy():
