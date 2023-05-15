@@ -1,4 +1,5 @@
-#!/usr/bin/python3.4
+#!/usr/bin/python
+# -*- coding: latin-1 -*-
 import pygame, sys
 try:
     from core_funcs import *

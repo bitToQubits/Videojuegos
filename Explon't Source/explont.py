@@ -1,3 +1,5 @@
+﻿#!usr/bin/python
+# -*- coding: utf-8 -*-
 import os
 import sys
 import math
@@ -151,6 +153,7 @@ class Lollipop(Entity):
 
     def update(self, gd):
         super().update(1 / 60)
+        
         if not self.hit:
             if self.rect.colliderect(gd.player.rect):
                 self.hit = 1
@@ -493,17 +496,17 @@ def end_screen(gd):
                 if event.key == K_ESCAPE:
                     pygame.quit()
                     sys.exit()
-                if event.key in [K_s, K_DOWN]:
+                if event.key in [K_s, K_r]:
                     closing = True
                     sounds['blip'].play()
 
-        t1 = 'score'[:state // 4]
+        t1 = 'Puntuación'[:state // 4]
         font_white.render(t1, display, (display.get_width() // 2 - font_white.width(t1) // 2, display.get_height() // 2 - 60))
         t2 = str(min(gd.level, max(state - 20, 0) // 4))
         font_white.render(t2, display, (display.get_width() // 2 - font_white.width(t2) // 2, display.get_height() // 2 - 40))
 
-        t3 = 'press down to continue'[:max(state - (20 + gd.level * 4), 0) // 4]
-        if t3 == 'press down to continue':
+        t3 = 'presiona [o] para continuar'[:max(state - (20 + gd.level * 4), 0) // 4]
+        if t3 == 'presiona [o] para continuar':
             max_state = True
 
         font_white.render(t3, display, (display.get_width() // 2 - font_white.width(t3) // 2, display.get_height() // 2 + 20))
@@ -516,7 +519,7 @@ def end_screen(gd):
 pygame.init()
 pygame.display.set_caption('Explon\'t')
 
-screen = pygame.display.set_mode((640, 480), 0, 32)
+screen = pygame.display.set_mode((640, 480), pygame.FULLSCREEN)
 display = pygame.Surface((320, 240))
 base_display = display.copy()
 display.set_colorkey((0, 0, 0))

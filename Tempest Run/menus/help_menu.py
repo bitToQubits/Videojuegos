@@ -114,13 +114,13 @@ class HelpMenuMode(GameMode):
                             'Evade los muros morados',
                             '¡Corre tan lejos como puedas!']
                 elif i == 1:
-                    msgs = ['↑ Joystick arriba o × para saltar',
+                    msgs = ['↑ Joystick arriba o [X] para saltar',
                             '← Joystick a Izquierda',
                             '→ Joystick a Derecha',
                             '↓ Joystick abajo para deslizarte',
-                            'o para resetear el nivel',
-                            'presiona X para volver o aceptar',
-                            'Boton Start para menú']
+                            '[O] para resetear el nivel',
+                            'presiona [X] para volver o aceptar',
+                            '[start] para menú']
                 elif i == 2:
                     msgs = ['presiona X para volver']
 
