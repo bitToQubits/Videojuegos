@@ -1,5 +1,3 @@
-﻿#!usr/bin/python
-# -*- coding: utf-8 -*-
 import os
 import sys
 import math
@@ -30,6 +28,9 @@ class GameData:
 
     def death_reset(self):
         self.level = 1
+        self.anger = 0
+
+    def reset_anger(self):
         self.anger = 0
 
     def reset(self):
@@ -153,7 +154,6 @@ class Lollipop(Entity):
 
     def update(self, gd):
         super().update(1 / 60)
-        
         if not self.hit:
             if self.rect.colliderect(gd.player.rect):
                 self.hit = 1
@@ -344,7 +344,6 @@ class Player(Entity):
 
     def update(self, gd):
         super().update(1 / 60)
-
         if self.angry > 0:
             self.angry -= 1
 
@@ -490,23 +489,21 @@ def end_screen(gd):
 
         for event in pygame.event.get():
             if event.type == QUIT:
-                pygame.quit()
-                sys.exit()
+                import menu
             if event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
-                    pygame.quit()
-                    sys.exit()
-                if event.key in [K_s, K_r]:
+                    import menu
+                if event.key == K_SPACE:
                     closing = True
                     sounds['blip'].play()
 
-        t1 = 'Puntuación'[:state // 4]
+        t1 = 'Puntaje '[:state // 4]
         font_white.render(t1, display, (display.get_width() // 2 - font_white.width(t1) // 2, display.get_height() // 2 - 60))
         t2 = str(min(gd.level, max(state - 20, 0) // 4))
         font_white.render(t2, display, (display.get_width() // 2 - font_white.width(t2) // 2, display.get_height() // 2 - 40))
 
-        t3 = 'presiona [o] para continuar'[:max(state - (20 + gd.level * 4), 0) // 4]
-        if t3 == 'presiona [o] para continuar':
+        t3 = 'presiona (x) para continuar'[:max(state - (20 + gd.level * 4), 0) // 4]
+        if t3 == 'presiona (x) para continuar':
             max_state = True
 
         font_white.render(t3, display, (display.get_width() // 2 - font_white.width(t3) // 2, display.get_height() // 2 + 20))
@@ -517,9 +514,10 @@ def end_screen(gd):
 
 
 pygame.init()
+pygame.mouse.set_visible(False)
 pygame.display.set_caption('Explon\'t')
 
-screen = pygame.display.set_mode((640, 480), pygame.FULLSCREEN)
+screen = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
 display = pygame.Surface((320, 240))
 base_display = display.copy()
 display.set_colorkey((0, 0, 0))
@@ -576,13 +574,14 @@ levels = [m.split('.')[0] for m in os.listdir('data/maps')]
 
 def next_level():
     gd.load_map(random.choice(levels))
+    
 
 next_level()
 
 global_time = 0
 tutorial_x = -100
 
-sounds['ambience'].play(-1)
+#sounds['ambience'].play(-1)
 
 pygame.mixer.music.load('data/music.ogg')
 pygame.mixer.music.set_volume(0.5)
@@ -699,13 +698,9 @@ while True:
                 display.blit(img, (tile[0][0] - gd.scroll[0] + offset[0], tile[0][1] - gd.scroll[1] + offset[1]))
 
     for event in pygame.event.get():
-        if event.type == QUIT:
-            pygame.quit()
-            sys.exit()
         if event.type == KEYDOWN:
             if event.key == K_ESCAPE:
-                pygame.quit()
-                sys.exit()
+                import menu
             if event.key in [K_LEFT, K_a]:
                 gd.input[0] = True
             if event.key in [K_RIGHT, K_d]:
@@ -821,6 +816,7 @@ while True:
     if gd.completed_level and gd.transition_state == 1:
         gd.level += 1
         next_level()
+        gd.reset_anger()
 
     # leaves
     for particle in gd.leaves.copy():
@@ -973,7 +969,7 @@ while True:
     if gd.level_notice:
         gd.level_notice -= 0.01
         gd.level_notice = max(0, gd.level_notice)
-        text = 'level ' + str(gd.level)
+        text = 'nivel ' + str(gd.level)
         w = font_white.width(text)
         if gd.level_notice > 0.8:
             l_pos = (display.get_width() // 2 - w // 2, display.get_height() // 2 - 16 - display.get_height() // 2 * (gd.level_notice - 0.8) * 5)
@@ -995,11 +991,11 @@ while True:
             tutorial_x += (display.get_width() + 150 - tutorial_x) / 20
         l_pos = (tutorial_x, display.get_height() // 4 - 8 + (global_time % 60) // 40)
         display.blit(lollipop_img, (tutorial_x - 20, l_pos[1]))
-        font_black.render('collect', display, (l_pos[0] - 1, l_pos[1]))
-        font_black.render('collect', display, (l_pos[0] + 1, l_pos[1]))
-        font_black.render('collect', display, (l_pos[0], l_pos[1] + 1))
-        font_black.render('collect', display, (l_pos[0], l_pos[1] - 1))
-        font_white.render('collect', display, l_pos)
+        font_black.render('colecta', display, (l_pos[0] - 1, l_pos[1]))
+        font_black.render('colecta', display, (l_pos[0] + 1, l_pos[1]))
+        font_black.render('colecta', display, (l_pos[0], l_pos[1] + 1))
+        font_black.render('colecta', display, (l_pos[0], l_pos[1] - 1))
+        font_white.render('colecta', display, l_pos)
 
 
     if gd.transition_state:

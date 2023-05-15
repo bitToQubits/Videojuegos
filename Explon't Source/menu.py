@@ -4,7 +4,8 @@ import pygame
 # Configuración de la pantalla
 pygame.init()
 screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)  # pantalla completa
-pygame.display.set_caption("Rage")
+pygame.display.set_caption("Explon't")
+pygame.mouse.set_visible(False)
 
 # Definición de las opciones del menú y su posición
 font = pygame.font.Font(None, 40)
@@ -19,6 +20,10 @@ for i in range(len(options)):
     option_positions.append((x, y))
 selected_option = 0
 
+def execfile(python):
+    with open(python) as f:
+        exec(f.read())
+
 # Bucle principal del juego
 while True:
     # Manejar eventos de teclado
@@ -30,11 +35,9 @@ while True:
                 selected_option = 1
             elif event.key == pygame.K_RETURN:
                 if selected_option == 0:
-                    print("Iniciando el juego...")
+                    import explont
                 elif selected_option == 1:
                     print("Mostrando la ayuda...")
-                pygame.quit()
-                quit()
             elif event.key == pygame.K_ESCAPE:
                 pygame.quit()
                 quit()
