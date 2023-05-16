@@ -101,79 +101,79 @@ confettiSpeed = []
 confettiColour = []
 
 #Define Images
-title = pygame.image.load("title-screen.png")
-start = pygame.image.load("start.png")
-winScreen = pygame.image.load("win-screen.png")
-gameOverScreen = pygame.image.load("game-over-screen.png")
+title = pygame.image.load("DonkeyKong-master/title-screen.png")
+start = pygame.image.load("DonkeyKong-master/start.png")
+winScreen = pygame.image.load("DonkeyKong-master/win-screen.png")
+gameOverScreen = pygame.image.load("DonkeyKong-master/game-over-screen.png")
 
-selectIcon = pygame.image.load("select-icon.png")
-life = pygame.image.load("mario-life.png")
+selectIcon = pygame.image.load("DonkeyKong-master/select-icon.png")
+life = pygame.image.load("DonkeyKong-master/mario-life.png")
 
-withLadder = pygame.image.load("withLadder.png")
-platform0 = pygame.image.load("platform0.png")
-platform1 = pygame.image.load("platform1.png")
-platform2 = pygame.image.load("platform2.png")
-platform3 = pygame.image.load("platform3.png")
-platform4 = pygame.image.load("platform4.png")
-platform5 = pygame.image.load("platform5.png")
-platform6 = pygame.image.load("platform6.png")
+withLadder = pygame.image.load("DonkeyKong-master/withLadder.png")
+platform0 = pygame.image.load("DonkeyKong-master/platform0.png")
+platform1 = pygame.image.load("DonkeyKong-master/platform1.png")
+platform2 = pygame.image.load("DonkeyKong-master/platform2.png")
+platform3 = pygame.image.load("DonkeyKong-master/platform3.png")
+platform4 = pygame.image.load("DonkeyKong-master/platform4.png")
+platform5 = pygame.image.load("DonkeyKong-master/platform5.png")
+platform6 = pygame.image.load("DonkeyKong-master/platform6.png")
 platforms = [platform0, platform1, platform2, platform3, platform4, platform5, platform6]
-level = pygame.image.load("level.png")
+level = pygame.image.load("DonkeyKong-master/level.png")
 
-blue0 = pygame.image.load("blue0.png")
-blue1 = pygame.image.load("blue1.png")
-blue2 = pygame.image.load("blue2.png")
-blue3 = pygame.image.load("blue3.png")
-blue4 = pygame.image.load("blue4.png")
-blue5 = pygame.image.load("blue5.png")
+blue0 = pygame.image.load("DonkeyKong-master/blue0.png")
+blue1 = pygame.image.load("DonkeyKong-master/blue1.png")
+blue2 = pygame.image.load("DonkeyKong-master/blue2.png")
+blue3 = pygame.image.load("DonkeyKong-master/blue3.png")
+blue4 = pygame.image.load("DonkeyKong-master/blue4.png")
+blue5 = pygame.image.load("DonkeyKong-master/blue5.png")
 blueNumbers = [blue0, blue1, blue2, blue3, blue4, blue5]
-white0 = pygame.image.load("white0.png")
-white1 = pygame.image.load("white1.png")
-white2 = pygame.image.load("white2.png")
-white3 = pygame.image.load("white3.png")
-white4 = pygame.image.load("white4.png")
-white5 = pygame.image.load("white5.png")
-white6 = pygame.image.load("white6.png")
-white7 = pygame.image.load("white7.png")
-white8 = pygame.image.load("white8.png")
-white9 = pygame.image.load("white9.png")
+white0 = pygame.image.load("DonkeyKong-master/white0.png")
+white1 = pygame.image.load("DonkeyKong-master/white1.png")
+white2 = pygame.image.load("DonkeyKong-master/white2.png")
+white3 = pygame.image.load("DonkeyKong-master/white3.png")
+white4 = pygame.image.load("DonkeyKong-master/white4.png")
+white5 = pygame.image.load("DonkeyKong-master/white5.png")
+white6 = pygame.image.load("DonkeyKong-master/white6.png")
+white7 = pygame.image.load("DonkeyKong-master/white7.png")
+white8 = pygame.image.load("DonkeyKong-master/white8.png")
+white9 = pygame.image.load("DonkeyKong-master/white9.png")
 whiteNumbers = [white0, white1, white2, white3, white4, white5, white6, white7, white8, white9]
 
-marioLeft = pygame.image.load("mario-left.png")
-marioRight = pygame.image.load("mario-right.png")
-runLeft = pygame.image.load("run-left.png")
-runRight = pygame.image.load("run-right.png")
-marioJumpLeft = pygame.image.load("jump-left.png")
-marioJumpRight = pygame.image.load("jump-right.png")
-marioClimb1 = pygame.image.load("marioClimb1.png")
-marioClimb2 = pygame.image.load("marioClimb2.png")
-dead = pygame.image.load("dead.png")
+marioLeft = pygame.image.load("DonkeyKong-master/mario-left.png")
+marioRight = pygame.image.load("DonkeyKong-master/mario-right.png")
+runLeft = pygame.image.load("DonkeyKong-master/run-left.png")
+runRight = pygame.image.load("DonkeyKong-master/run-right.png")
+marioJumpLeft = pygame.image.load("DonkeyKong-master/jump-left.png")
+marioJumpRight = pygame.image.load("DonkeyKong-master/jump-right.png")
+marioClimb1 = pygame.image.load("DonkeyKong-master/marioClimb1.png")
+marioClimb2 = pygame.image.load("DonkeyKong-master/marioClimb2.png")
+dead = pygame.image.load("DonkeyKong-master/dead.png")
 marioImage = marioRight
 
-paulineHelp = pygame.image.load("pauline-help.png")
-paulineStill = pygame.image.load("pauline-still.png")
+paulineHelp = pygame.image.load("DonkeyKong-master/pauline-help.png")
+paulineStill = pygame.image.load("DonkeyKong-master/pauline-still.png")
 
-dkUp1 = pygame.image.load("DK_up1.png")
-dkUp2 = pygame.image.load("DK_up2.png")
-dkEmptyClimb1 = pygame.image.load("dkClimbEmpty1.png")
-dkEmptyClimb2 = pygame.image.load("dkClimbEmpty2.png")
-dkForward = pygame.image.load("dkForward.png")
-dkLeft = pygame.image.load("dkLeft.png")
-dkRight = pygame.image.load("dkRight.png")
-dkDefeat = pygame.image.load("DK-defeat.png")
+dkUp1 = pygame.image.load("DonkeyKong-master/DK_up1.png")
+dkUp2 = pygame.image.load("DonkeyKong-master/DK_up2.png")
+dkEmptyClimb1 = pygame.image.load("DonkeyKong-master/dkClimbEmpty1.png")
+dkEmptyClimb2 = pygame.image.load("DonkeyKong-master/dkClimbEmpty2.png")
+dkForward = pygame.image.load("DonkeyKong-master/dkForward.png")
+dkLeft = pygame.image.load("DonkeyKong-master/dkLeft.png")
+dkRight = pygame.image.load("DonkeyKong-master/dkRight.png")
+dkDefeat = pygame.image.load("DonkeyKong-master/DK-defeat.png")
 dkImage = dkForward
 
-barrelStack = pygame.image.load("barrel-stack.png")
-barrelDown = pygame.image.load("barrel-down.png")
-barrel1 = pygame.image.load("barrel1.png")
-barrel2 = pygame.image.load("barrel2.png")
-barrel3 = pygame.image.load("barrel3.png")
-barrel4 = pygame.image.load("barrel4.png")
+barrelStack = pygame.image.load("DonkeyKong-master/barrel-stack.png")
+barrelDown = pygame.image.load("DonkeyKong-master/barrel-down.png")
+barrel1 = pygame.image.load("DonkeyKong-master/barrel1.png")
+barrel2 = pygame.image.load("DonkeyKong-master/barrel2.png")
+barrel3 = pygame.image.load("DonkeyKong-master/barrel3.png")
+barrel4 = pygame.image.load("DonkeyKong-master/barrel4.png")
 barrelSequence = [barrel1, barrel2, barrel3, barrel4]
 barrelPic = []
 
-brokenHeart = pygame.image.load("broken-heart.png")
-fullHeart = pygame.image.load("full-heart.png")
+brokenHeart = pygame.image.load("DonkeyKong-master/broken-heart.png")
+fullHeart = pygame.image.load("DonkeyKong-master/full-heart.png")
 
 #declares values for 400 confetti pieces
 for i in range(0, 400):
@@ -745,16 +745,18 @@ while replay:
     
     #start creating a graphical program
     pygame.init()
-    walk = pygame.mixer.Sound("walking\\walking.wav")
-    jump = pygame.mixer.Sound("jump\\jump.wav")
-    intro = pygame.mixer.Sound("intro1\\intro1.wav")
-    death = pygame.mixer.Sound("death\\death.wav")
-    bac = pygame.mixer.music.load("bacmusic\\bacmusic.wav")
+    walk = pygame.mixer.Sound("DonkeyKong-master/walking\\walking.wav")
+    jump = pygame.mixer.Sound("DonkeyKong-master/jump\\jump.wav")
+    intro = pygame.mixer.Sound("DonkeyKong-master/intro1\\intro1.wav")
+    death = pygame.mixer.Sound("DonkeyKong-master/death\\death.wav")
+    bac = pygame.mixer.music.load("DonkeyKong-master/bacmusic\\bacmusic.wav")
     pygame.mixer.music.play(-1)
 
     
     #Set Screen Dimensions
     WIDTH = 800
+ 
+ 
     HEIGHT = 800
     screen = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
     
