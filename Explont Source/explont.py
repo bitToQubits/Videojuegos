@@ -43,7 +43,7 @@ class GameData:
         self.player = None
         self.input = [False, False, False]
         self.clouds = []
-        self.grass_manager = GrassManager('Explont Source/data/images/grass', tile_size=16)
+        self.grass_manager = GrassManager('data/images/grass', tile_size=16)
         self.circle_particles = []
         self.enemies = []
         self.game_over = 0
@@ -93,7 +93,7 @@ class GameData:
         self.reset()
 
         self.level_map = tile_map.TileMap((TILE_SIZE, TILE_SIZE), display.get_size())
-        self.level_map.load_map('Explont Source/data/maps/' + name + '.json')
+        self.level_map.load_map('data/maps/' + name + '.json')
 
         for entity in self.level_map.load_entities():
             entity_type = entity[2]['type'][1]
@@ -134,6 +134,83 @@ class GameData:
             self.spawn_enemy()
 
         self.render_level_mask()
+
+class PauseMenu(main.GameMode):
+
+    def __init__(self, loop, gameplay_mode: GameplayMode):
+        super().__init__(loop)
+        self.selected_option_idx = 0
+        self.gameplay_mode = gameplay_mode
+        self.options = [
+            ("continuar", lambda: self.continue_pressed()),
+            ("salir", lambda: self.exit_pressed())
+        ]
+
+        self.title_font = fonts.get_font(config.FontSize.title)
+        self.option_font = fonts.get_font(config.FontSize.option)
+
+        self.pause_timer = 0  # how long we've been paused
+
+    def on_mode_start(self):
+        SoundManager.play('blip2')
+        #SoundManager.set_song_volume_multiplier(0.5)
+
+    def on_mode_end(self):
+        #SoundManager.set_song_volume_multiplier(1.0)
+        print("Muerto")
+
+    def update(self, dt, events):
+        self.pause_timer += dt
+        for e in events:
+            if e.type == pygame.KEYDOWN:
+                if e.key in keybinds.MENU_UP:
+                    SoundManager.play('blip')
+                    self.selected_option_idx = (self.selected_option_idx - 1) % len(self.options)
+                elif e.key in keybinds.MENU_DOWN:
+                    SoundManager.play('blip')
+                    self.selected_option_idx = (self.selected_option_idx + 1) % len(self.options)
+                elif e.key in keybinds.MENU_ACCEPT:
+                    self.options[self.selected_option_idx][1]()  # activate the option's lambda
+                    return
+                elif e.key in keybinds.MENU_CANCEL:
+                    self.continue_pressed()
+                    return
+
+    def continue_pressed(self):
+        SoundManager.play('accept')
+        self.loop.set_mode(self.gameplay_mode)
+
+    def exit_pressed(self):
+        SoundManager.play('blip2')
+        self.loop.set_mode(main.MainMenuMode(self.loop))
+
+    def draw_to_screen(self, screen):
+        # make the level underneath fade darker slightly after you've paused
+        max_darkness = 0.333
+        max_darkness_time = 0.1  # second
+        current_darkness = utility_functions.lerp(self.pause_timer / max_darkness_time, 1, max_darkness)
+
+        # drawing level underneath this menu
+        self.gameplay_mode.draw_to_screen(screen, extra_darkness_factor=current_darkness)
+
+        screen_size = screen.get_size()
+        title_surface = self.title_font.render('PAUSA', True, neon.WHITE)
+
+        title_size = title_surface.get_size()
+        title_y = screen_size[1] // 3 - title_size[1] // 2
+        screen.blit(title_surface, dest=(screen_size[0] // 2 - title_size[0] // 2, title_y))
+
+        option_y = max(screen_size[1] // 2, title_y + title_size[1])
+        for i in range(len(self.options)):
+            option_text = self.options[i][0]
+            is_selected = i == self.selected_option_idx
+            color = neon.WHITE if not is_selected else neon.RED
+
+            option_surface = self.option_font.render(option_text.upper(), True, color)
+            option_size = option_surface.get_size()
+            screen.blit(option_surface, dest=(screen_size[0] // 2 - option_size[0] // 2, option_y))
+            option_y += option_size[1]
+
 
 class AnimationE(Entity):
     def __init__(self, *args):
@@ -492,8 +569,8 @@ def end_screen(gd):
                 print("quitting")
             if event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
-                   print("escape") 
-                   pygame.quit()
+                    print("escape") 
+                    import menu
                 if event.key == K_SPACE:
                     closing = True
                     sounds['blip'].play()
@@ -530,32 +607,32 @@ clock = pygame.time.Clock()
 
 animation_manager = AnimationManager()
 
-spritesheets, spritesheets_data = spritesheet_loader.load_spritesheets('Explont Source/data/images/spritesheets/')
+spritesheets, spritesheets_data = spritesheet_loader.load_spritesheets('data/images/spritesheets/')
 
-foliage_animations = [AnimatedFoliage(load_img('Explont Source/data/images/foliage/' + str(i) + '.png'), [[23, 67, 75], [100, 125, 52], [192, 199, 65]], motion_scale=0.5) for i in range(3)]
+foliage_animations = [AnimatedFoliage(load_img('data/images/foliage/' + str(i) + '.png'), [[23, 67, 75], [100, 125, 52], [192, 199, 65]], motion_scale=0.5) for i in range(3)]
 
-load_particle_images('Explont Source/data/images/particles')
+load_particle_images('data/images/particles')
 
-anger_icon_1 = load_img('Explont Source/data/images/anger_icon_1.png')
-anger_icon_2 = load_img('Explont Source/data/images/anger_icon_2.png')
-anger_s1 = load_img('Explont Source/data/images/anger_1.png')
-anger_s2 = load_img('Explont Source/data/images/anger_2.png')
-anger_bar = load_img('Explont Source/data/images/anger_bar.png')
-anger_bar_end = load_img('Explont Source/data/images/anger_bar_end.png')
-anger_bar_end_white = load_img('Explont Source/data/images/anger_bar_end_white.png')
-bg_img = load_img('Explont Source/data/images/bg.png')
-gun_img = load_img('Explont Source/data/images/gun.png')
-lollipop_img = load_img('Explont Source/data/images/lollipop.png')
-warp_img = load_img('Explont Source/data/images/warp.png')
-hit_overlay_img = load_img('Explont Source/data/images/hit_overlay.png')
-tutorial_img = load_img('Explont Source/data/images/tutorial.png')
+anger_icon_1 = load_img('data/images/anger_icon_1.png')
+anger_icon_2 = load_img('data/images/anger_icon_2.png')
+anger_s1 = load_img('data/images/anger_1.png')
+anger_s2 = load_img('data/images/anger_2.png')
+anger_bar = load_img('data/images/anger_bar.png')
+anger_bar_end = load_img('data/images/anger_bar_end.png')
+anger_bar_end_white = load_img('data/images/anger_bar_end_white.png')
+bg_img = load_img('data/images/bg.png')
+gun_img = load_img('data/images/gun.png')
+lollipop_img = load_img('data/images/lollipop.png')
+warp_img = load_img('data/images/warp.png')
+hit_overlay_img = load_img('data/images/hit_overlay.png')
+tutorial_img = load_img('data/images/tutorial.png')
 
-cloud_images = [load_img('Explont Source/data/images/clouds/cloud_' + str(i + 1) + '.png') for i in range(3)]
+cloud_images = [load_img('data/images/clouds/cloud_' + str(i + 1) + '.png') for i in range(3)]
 
-font_white = Font('Explont Source/data/fonts/large_font.png', (247, 237, 186))
-font_black = Font('Explont Source/data/fonts/large_font.png', (31, 14, 28))
+font_white = Font('data/fonts/large_font.png', (247, 237, 186))
+font_black = Font('data/fonts/large_font.png', (31, 14, 28))
 
-sounds = {sound.split('/')[-1].split('.')[0] : pygame.mixer.Sound('Explont Source/data/sfx/' + sound) for sound in os.listdir('Explont Source/data/sfx')}
+sounds = {sound.split('/')[-1].split('.')[0] : pygame.mixer.Sound('data/sfx/' + sound) for sound in os.listdir('data/sfx')}
 sounds['ambience'].set_volume(0.2)
 sounds['crunch'].set_volume(0.7)
 sounds['grass_1'].set_volume(0.06)
@@ -571,7 +648,7 @@ sounds['warning'].set_volume(0.3)
 
 gd = GameData()
 
-levels = [m.split('.')[0] for m in os.listdir('Explont Source/data/maps')]
+levels = [m.split('.')[0] for m in os.listdir('data/maps')]
 
 def next_level():
     gd.load_map(random.choice(levels))
@@ -584,7 +661,7 @@ tutorial_x = -100
 
 #sounds['ambience'].play(-1)
 
-pygame.mixer.music.load('Explont Source/data/music.ogg')
+pygame.mixer.music.load('data/music.ogg')
 pygame.mixer.music.set_volume(0.5)
 pygame.mixer.music.play(-1)
 

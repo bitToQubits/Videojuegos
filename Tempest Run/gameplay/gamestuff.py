@@ -135,7 +135,7 @@ class GameplayMode(main.GameMode):
         if show_score:
             screen.blit(self.score_font.render(str(self.player.get_score()), False, neon.LIME), (20, 20))
 
-
+#Pausa 
 class PauseMenu(main.GameMode):
 
     def __init__(self, loop, gameplay_mode: GameplayMode):

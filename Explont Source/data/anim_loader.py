@@ -4,7 +4,7 @@ import pygame
 
 from .core_funcs import *
 
-ANIMATION_PATH = 'Explont Source/data/images/animations'
+ANIMATION_PATH = 'data/images/animations'
 COLORKEY = (0, 0, 0)
 
 def load_img(path, colorkey):
