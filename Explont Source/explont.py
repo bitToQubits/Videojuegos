@@ -135,7 +135,7 @@ class GameData:
 
         self.render_level_mask()
 
-class PauseMenu(main.GameMode):
+'''class PauseMenu(main.GameMode):
 
     def __init__(self, loop, gameplay_mode: GameplayMode):
         super().__init__(loop)
@@ -209,7 +209,7 @@ class PauseMenu(main.GameMode):
             option_surface = self.option_font.render(option_text.upper(), True, color)
             option_size = option_surface.get_size()
             screen.blit(option_surface, dest=(screen_size[0] // 2 - option_size[0] // 2, option_y))
-            option_y += option_size[1]
+            option_y += option_size[1]'''
 
 
 class AnimationE(Entity):
@@ -566,11 +566,12 @@ def end_screen(gd):
 
         for event in pygame.event.get():
             if event.type == QUIT:
-                print("quitting")
+                pygame.quit()
+                quit()
             if event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
-                    print("escape") 
-                    import menu
+                    pygame.quit()
+                    quit()
                 if event.key == K_SPACE:
                     closing = True
                     sounds['blip'].play()
@@ -778,7 +779,8 @@ while True:
     for event in pygame.event.get():
         if event.type == KEYDOWN:
             if event.key == K_ESCAPE:
-                import menu
+                pygame.quit()
+                quit()
             if event.key in [K_LEFT, K_a]:
                 gd.input[0] = True
             if event.key in [K_RIGHT, K_d]:

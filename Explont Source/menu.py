@@ -1,5 +1,7 @@
 # -*- coding: latin-1 -*-
 import pygame
+from subprocess import Popen
+import time
 
 # Configuración de la pantalla
 pygame.init()
@@ -15,52 +17,83 @@ option_positions = []
 for i in range(len(options)):
     text = font.render(options[i], True, (0, 0, 0))
     width, height = text.get_size()
-    x = (screen.get_width() - width) // 2
-    y = (screen.get_height() - height * len(options)) // 2 + i * height * 2
+    if i == 1:
+        x = (screen.get_width() - width) // 1.65 #Posicion Horizontal.
+    else:
+        x = (screen.get_width() - width) // 1.9 #Posicion Horizontal.
+    #Posición Vertical.
+    y = (screen.get_height() - height * len(options)) // 2 + i * height * 2 
     option_positions.append((x, y))
-
-selected_option = 0
 
 def get_font(size): # Returns Press-Start-2P in the desired size
     return pygame.font.Font("data/fonts/font.ttf", size)
 
-# Bucle principal del juego
-while True:
-    # Manejar eventos de teclado
-    for event in pygame.event.get():
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_UP and selected_option > 0:
-                selected_option -= 1
-            elif event.key == pygame.K_DOWN and selected_option < len(options) - 1:
-                selected_option += 1
+click_running = 0
 
-            if event.key == pygame.K_RETURN:
-                if selected_option == 0:
-                    print("jUGAR")
-                elif selected_option == 1:
-                    print("Ayuda..")
-                elif selected_option == 2:
-                    print("Saliendo aquí ...")
+def main_menu():
+    selected_option = 0
+    # Bucle principal del juego
+    while True:
+        # Manejar eventos de teclado
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_UP and selected_option > 0:
+                    selected_option -= 1
+                elif event.key == pygame.K_DOWN and selected_option < len(options) - 1:
+                    selected_option += 1
 
-            if event.key == pygame.K_ESCAPE:
-                pygame.quit()
-                quit()
+                if event.key == pygame.K_RETURN:
+                    if selected_option == 0:
+                        if click_running == 0:
+                            Popen('python explont.py')
+                            click_running += 1
+                    elif selected_option == 1:
+                        ayuda()
+                    elif selected_option == 2:
+                        pygame.quit()
+                        quit()
+
+                if event.key == pygame.K_ESCAPE:
+                    pygame.quit()
+                    quit()
+
+        click_running = False
+        # Dibujar el título en la pantalla
+        screen.fill((255, 255, 255))
+        title = get_font(45).render("Explon't", True, (0, 0, 0))
+        title_pos = ((screen.get_width() - title.get_width()) // 2, 100)
+        screen.blit(title, title_pos)
+
+        # Dibujar las opciones en la pantalla
+        for i in range(len(options)):
+            text = get_font(30).render(options[i], True, (0, 0, 0))
+            text_rect = text.get_rect(center=option_positions[i])
+            screen.blit(text, text_rect)
+            #Resaltar la opción seleccionada
+            if i == selected_option:
+                highlight_rect = pygame.Rect(text_rect.left - 10, text_rect.top - 10, text_rect.width + 20, text_rect.height + 20)
+                pygame.draw.rect(screen, '#c0c741', highlight_rect, 5)
+
+        pygame.display.update()
 
 
-    # Dibujar el título en la pantalla
-    screen.fill((255, 255, 255))
-    title = get_font(45).render("Explon't", True, (0, 0, 0))
-    title_pos = ((screen.get_width() - title.get_width()) // 2, 100)
-    screen.blit(title, title_pos)
+def ayuda():
+    while True:
+        screen.fill((255, 255, 255))
 
-    # Dibujar las opciones en la pantalla
-    for i in range(len(options)):
-        text = get_font(30).render(options[i], True, (0, 0, 0))
-        text_rect = text.get_rect(center=option_positions[i])
-        screen.blit(text, text_rect)
-        # Resaltar la opción seleccionada
-        if i == selected_option:
-            highlight_rect = pygame.Rect(text_rect.left - 10, text_rect.top - 10, text_rect.width + 20, text_rect.height + 20)
-            pygame.draw.rect(screen, (255, 0, 0), highlight_rect, 5)
+        title = get_font(40).render("Controles", True, '#065aa0')
+        title_pos = ((screen.get_width() - title.get_width()) // 2, 100)
+        screen.blit(title, title_pos)
 
-    pygame.display.update()
+        title = get_font(20).render("Presiona Start para volver.", True, (0, 0, 0))
+        title_pos = ((screen.get_width() - title.get_width()) // 10, 950)
+        screen.blit(title, title_pos)
+
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    main_menu()
+        
+        pygame.display.update()
+
+main_menu()
