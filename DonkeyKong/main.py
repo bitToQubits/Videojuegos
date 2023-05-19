@@ -66,7 +66,7 @@ addJump = -7
 jumpCount = 0
 jumpPoint = 0
 deathCount = 0
-lives = 3
+lives = 1
 
 barrelX = []
 barrelY = []
@@ -827,6 +827,7 @@ def _main():
     global ladderY2
     global fullLadderUp 
     global fullLadderDown 
+    global downLadder
 
     global leftBoundariesY
     global rightBoundariesY
@@ -846,7 +847,7 @@ def _main():
     global moveRight
     global moveLeft
     global marioJumpCount
-    inPlay = True
+    #inPlay = True
     replay = True
     while replay:
     
@@ -1436,62 +1437,63 @@ def _main():
             
                 #looks for return to be pressed and it can only do something when the game is lost or won
                 #print(gameDone, winGame,keys[pygame.K_RETURN])
-                if keys[pygame.K_SPACE] and (gameDone or winGame):
+                if (gameDone or winGame):
                     #if the top option is selected, reset the game
                     if option == "top":
+                        if keys[pygame.K_RETURN]:
                     
-                        #reset variables to restart
-                        inPlay = False
-                        winLevel = False
-                        pressed = False
-                        climbDone = False
-                        introDone = False
-                        gameStart = False
-                        startDone = False
-                        gameDone = False
-                        throwBarrel = False
-                        jumpLeft = False
-                        jumpRight = False
-                        jumpStill = False
-                        winGame = False
-                        winLevel = False
-                        deathScene = False
-                        scoreWin = False
-                        winGameSceneDone = False
-                        score = 0
-                        levelNum = 0
-                        dkClimb = 0
-                        climbCount = 15
-                        platNum = 0
-                        dkJumpX = 378
-                        dkJumpY = 172
-                        dkJumpYNum = 0
-                        marioX = 150
-                        marioY = 720
-                        addJump = -7
-                        marioJumpCount = 0
-                        lives = 3
-                        difficulty = 0
-                        barrelX = []
-                        barrelY = []    
-                        barrelPic = []
-                        throwCountdown = 0
-                        barrelDirection = []
-                        fall = []
-                        fallCount = []
-                        barrelLeft = []
-                        barrelRight = []
-                        print("key top")
+                            #reset variables to restart
+                            inPlay = False
+                            winLevel = False
+                            pressed = False
+                            climbDone = False
+                            introDone = False
+                            gameStart = False
+                            startDone = False
+                            gameDone = False
+                            throwBarrel = False
+                            jumpLeft = False
+                            jumpRight = False
+                            jumpStill = False
+                            winGame = False
+                            winLevel = False
+                            deathScene = False
+                            scoreWin = False
+                            winGameSceneDone = False
+                            score = 0
+                            levelNum = 0
+                            dkClimb = 0
+                            climbCount = 15
+                            platNum = 0
+                            dkJumpX = 378
+                            dkJumpY = 172
+                            dkJumpYNum = 0
+                            marioX = 150
+                            marioY = 720
+                            addJump = -7
+                            marioJumpCount = 0
+                            lives = 3
+                            difficulty = 0
+                            barrelX = []
+                            barrelY = []    
+                            barrelPic = []
+                            throwCountdown = 0
+                            barrelDirection = []
+                            fall = []
+                            fallCount = []
+                            barrelLeft = []
+                            barrelRight = []
+                            print("key top")
                 
                     #if the bottom option is selected, you will quit the game    
                     elif option == "bottom":
-                        print("key bottom")
-                        inPlay = False
-                        replay = False
-                        print("bottom")
-                        pygame.mixer.music.fadeout(1000)
-                        import menu
-                        menu.main_menu()
+                        if keys[pygame.K_RETURN]:
+                            inPlay = False
+                            replay = False
+                            print("bottom")
+                            pygame.mixer.music.fadeout(1000)
+                            import menu
+                            menu.main_menu()
                         
         
             #if it is True then redraw the screen

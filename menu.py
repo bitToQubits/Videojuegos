@@ -26,7 +26,7 @@ def main_menu():
     pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
     title_font = fonts.get_font(40,name="blocky")
     subtitle_font = fonts.get_font(20,name="blocky")
-    option_font = fonts.get_font(12,name="blocky")
+    option_font = fonts.get_font(13,name="blocky")
     info_font = fonts.get_font(20)
     TARGET_FPS = config.Display.fps if not config.Debug.fps_test else -1
     n_squares = 25
@@ -34,8 +34,7 @@ def main_menu():
     options = [
             ("Explon't", None),
             ("Tempest Run", None),
-            ("Donkey Kong", None),
-            ("Rage", None)
+            ("Donkey Kong", None)
         ]
     selected_option_idx = 0
     # Bucle principal del juego
@@ -121,12 +120,6 @@ def main_menu():
                 elif i == 2:
                     msgs = ['↑ Joystick arriba para subir', '[X] para saltar','← Joystick a Izquierda','→ Joystick a Derecha','[start] para menú']
                     color = (241,166,112)
-                    title_bottom = subtitle_font.render('Press [x] to start', False, color)
-                    subtitle_size = title_bottom.get_size()
-                    screen.blit(title_bottom, dest=(screen_size[0] // 2 - subtitle_size[0] // 2,
-                                                 title_y+700))
-                elif i == 3:
-                    color = neon.RED
                     title_bottom = subtitle_font.render('Press [x] to start', False, color)
                     subtitle_size = title_bottom.get_size()
                     screen.blit(title_bottom, dest=(screen_size[0] // 2 - subtitle_size[0] // 2,
