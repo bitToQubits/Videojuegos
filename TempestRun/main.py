@@ -90,7 +90,6 @@ class MainMenuMode(GameMode):
         self.selected_option_idx = 0
         self.options = [
             ("empezar", lambda: self.start_pressed()),
-            ("ayuda", lambda: self.help_pressed()),
             ("volver al menu", lambda: self.exit_pressed())
         ]
 

@@ -1,79 +1,160 @@
-# -*- coding: latin-1 -*-
+# -*- coding: utf-8 -*-
 from select import select
 import pygame
+import math
+import random
+
+import pygame
+
+import TempestRun.rendering.neon as neon
+import TempestRun.keybinds as keybinds
+import TempestRun.util.fonts as fonts
+import TempestRun.config as config
+from TempestRun.sound_manager.SoundManager import SoundManager
 
 # Configuraci�n de la pantalla
 pygame.init()
+SoundManager.init()
 pygame.display.set_caption("Rage Arcade")
 pygame.mouse.set_visible(False)
 screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN) 
-# Definici�n de las opciones del men� y su posici�n
-font = pygame.font.Font(None, 40)
-big_font = pygame.font.Font(None, 80)
-options = ["Explont", "Tempest Run","Donkey Kong","Rage"]
-option_positions = []
-for i in range(len(options)):
-    text = font.render(options[i], True, (0, 0, 0))
-    width, height = text.get_size()
-    if i == 1:
-        x = (screen.get_width() - width) // 1.65 #Posicion Horizontal.
-    else:
-        x = (screen.get_width() - width) // 1.9 #Posicion Horizontal.
-    #Posici�n Vertical.
-    y = (screen.get_height() - height * len(options)) // 2 + i * height * 2 
-    option_positions.append((x, y))
 
 def get_font(size): # Returns Press-Start-2P in the desired size
     return pygame.font.Font("Explont/data/fonts/font.ttf", size)
 
 def main_menu():
     pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-    selected_option = 0
+    title_font = fonts.get_font(40,name="blocky")
+    subtitle_font = fonts.get_font(20,name="blocky")
+    option_font = fonts.get_font(15,name="blocky")
+    info_font = fonts.get_font(20)
+    TARGET_FPS = config.Display.fps if not config.Debug.fps_test else -1
+    n_squares = 25
+    squares = [_generate_square() for _ in range(n_squares)]  # format -> [x, y, angle, speed]
+    options = [
+            ("Explon't", None),
+            ("Tempest Run", None),
+            ("Donkey Kong", None),
+            ("Rage", None)
+        ]
+    selected_option_idx = 0
     # Bucle principal del juego
     while True:
-        # Manejar eventos de teclado
-        for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_UP and selected_option > 0:
-                    selected_option -= 1
-                elif event.key == pygame.K_DOWN and selected_option < len(options) - 1:
-                    selected_option += 1
+        clock = pygame.time.Clock()
+        dt = clock.tick(TARGET_FPS) / 1000.0
+        for i in squares:
+            i[2] += i[3] * dt * 100
+            i[1] -= abs(i[3]) * dt  * 100
+        squares = [s for s in squares if s[1] > -50]  # purge squares that fell off the top of the screen
 
-                if event.key == pygame.K_RETURN:
-                    if selected_option == 0:
+        while len(squares) < n_squares:
+            squares.append(_generate_square())
+
+        for e in pygame.event.get():
+            if e.type == pygame.KEYDOWN:
+                if e.key in keybinds.LEFT:
+                    SoundManager.play('blip')
+                    selected_option_idx = (selected_option_idx - 1) % len(options)
+                elif e.key in keybinds.RIGHT:
+                    SoundManager.play('blip')
+                    selected_option_idx = (selected_option_idx + 1) % len(options)
+                elif e.key in keybinds.MENU_CANCEL:
+                    SoundManager.play('blip2')
+                elif e.key in keybinds.MENU_ACCEPT:
+                    SoundManager.play("accept")
+                    if selected_option_idx == 0:
                         import Explont.explont as explont
                         explont.explont()
-                    elif selected_option == 1:
+                    if selected_option_idx == 1:
                         import TempestRun.main as tempest
                         tempest._main()
-                    elif selected_option == 2:
+                    if selected_option_idx == 2:
                         import DonkeyKong.main as donkey
                         donkey._main()
+                    
 
-        # Dibujar el t�tulo en la pantalla
-        screen.fill((255, 255, 255))
-        title = get_font(45).render("Rage Arcade", True, (253,0,29))
-        title_pos = ((screen.get_width() - title.get_width()) // 2, 100)
-        screen.blit(title, title_pos)
+        screen.fill((0, 0, 0))
 
-        # Dibujar las opciones en la pantalla
-        for i in range(len(options)):  
-            text = get_font(30).render(options[i], True, (0, 0, 0))
-            text_rect = text.get_rect(center=option_positions[i])
-            screen.blit(text, text_rect)
-            #Resaltar la opci�n seleccionada
-            if i == 0 and i == selected_option:
-                highlight_rect = pygame.Rect(text_rect.left - 10, text_rect.top - 10, text_rect.width + 20, text_rect.height + 20)
-                pygame.draw.rect(screen, '#c0c741', highlight_rect, 5)
-            elif i == 1 and i == selected_option:
-                highlight_rect = pygame.Rect(text_rect.left - 10, text_rect.top - 10, text_rect.width + 20, text_rect.height + 20)
-                pygame.draw.rect(screen, '#2081F7', highlight_rect, 5)
-            elif i == 2 and i == selected_option:
-                highlight_rect = pygame.Rect(text_rect.left - 10, text_rect.top - 10, text_rect.width + 20, text_rect.height + 20)
-                pygame.draw.rect(screen, '#4B1A09', highlight_rect, 5)
-            elif i == 3 and i == selected_option:
-                highlight_rect = pygame.Rect(text_rect.left - 10, text_rect.top - 10, text_rect.width + 20, text_rect.height + 20)
-                pygame.draw.rect(screen, '#E11C00', highlight_rect, 5)
+        for i in squares:
+            pygame.draw.lines(screen, (0, 255, 0), True, get_square_points(i[0], i[1], i[2]))
+        screen_size = screen.get_size()
+        title_surface = title_font.render('RAGE ARCADE', False, neon.RED)
+
+        title_size = title_surface.get_size()
+        title_y = screen_size[1] // 4 - title_size[1] // 2
+        screen.blit(title_surface, dest=(screen_size[0] // 2 - title_size[0] // 2,
+                                         title_y))
+
+        option_y = max(screen_size[1] // 2, title_y + title_size[1])
+        msgs = []
+        for i in range(len(options)):
+            option_text = options[i][0]
+            is_selected = i == selected_option_idx
+            color = neon.WHITE
+            if is_selected:
+                if i == 0:
+                    msgs = ['↑ Joystick arriba o [X] para saltar',
+                            '← Joystick a Izquierda',
+                            '→ Joystick a Derecha',
+                            '[start] para menú']
+                    color = neon.LIME
+                    title_bottom = subtitle_font.render('Press [x] to start', False, color)
+                    subtitle_size = title_bottom.get_size()
+                    screen.blit(title_bottom, dest=(screen_size[0] // 2 - subtitle_size[0] // 2,
+                                                 title_y+630))
+                elif i == 1:
+                    msgs = ['↑ Joystick arriba o [X] para saltar',
+                            '← Joystick a Izquierda',
+                            '→ Joystick a Derecha',
+                            '↓ Joystick abajo para deslizarte',
+                            '[O] para resetear el nivel',
+                            'presiona [X] para volver o aceptar',
+                            '[start] para menú']
+                    color = (11,116,255)
+                    title_bottom = subtitle_font.render('Press [x] to start', False, color)
+                    subtitle_size = title_bottom.get_size()
+                    screen.blit(title_bottom, dest=(screen_size[0] // 2 - subtitle_size[0] // 2,
+                                         title_y+630))
+                elif i == 2:
+                    msgs = ['↑ Joystick arriba para subir', '[X] para saltar','← Joystick a Izquierda','→ Joystick a Derecha','[start] para menú']
+                    color = (241,166,112)
+                    title_bottom = subtitle_font.render('Press [x] to start', False, color)
+                    subtitle_size = title_bottom.get_size()
+                    screen.blit(title_bottom, dest=(screen_size[0] // 2 - subtitle_size[0] // 2,
+                                                 title_y+630))
+                elif i == 3:
+                    color = neon.RED
+                    title_bottom = subtitle_font.render('Press [x] to start', False, color)
+                    subtitle_size = title_bottom.get_size()
+                    screen.blit(title_bottom, dest=(screen_size[0] // 2 - subtitle_size[0] // 2,
+                                                 title_y+630))
+
+            option_surface = option_font.render(option_text.upper(), True, color)
+            option_size = option_surface.get_size()
+            screen.blit(option_surface, dest=((screen_size[0] // (len(options) + 1)) * (i + 1) - option_size[0] // 2, option_y))
+            for index, msg in enumerate(msgs):
+                msg_surf = info_font.render(msg, True, neon.WHITE)
+                screen.blit(msg_surf, msg_surf.get_rect(center=(screen_size[0] // 2, screen_size[1] * 2 / 3.3 + msg_surf.get_size()[1] * index)))
         pygame.display.update()
+
+def _generate_square():
+        screen_w, screen_h = pygame.display.get_surface().get_size()
+        return [random.randint(0, screen_w),  # x position
+                screen_h + 25,                # y position
+                random.randint(0, 360),       # angle
+                random.randint(2, 10) / 2 * random.choice([-1, 1])]  # speed
+
+def get_square_points(x, y, angle, size=50):
+        # points of a square rotated at an angle with respect to it's center
+        points = [
+            [-size // 2, - size // 2],
+            [size // 2, - size // 2],
+            [size // 2, size // 2],
+            [-size // 2, size // 2]
+        ]
+        points = [pygame.Vector2(i[0], i[1]).rotate(angle) for i in points]
+        points = [[x + i[0], y + i[1]] for i in points]
+        return points
+
 
 main_menu()

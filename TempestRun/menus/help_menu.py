@@ -15,6 +15,7 @@ from TempestRun.sound_manager.SoundManager import SoundManager
 
 class HelpMenuMode(GameMode):
 
+
     def __init__(self, loop: GameLoop, prev_menu: GameMode):
         super().__init__(loop)
         self.prev_menu = prev_menu
@@ -60,7 +61,7 @@ class HelpMenuMode(GameMode):
     def exit_pressed(self):
         self.loop.set_mode(self.prev_menu)
 
-    def update(self, dt, events):
+    def update(self, dt):
         for i in self.squares:
             i[2] += i[3] * dt * 100
             i[1] -= abs(i[3]) * dt  * 100
@@ -69,7 +70,7 @@ class HelpMenuMode(GameMode):
         while len(self.squares) < self.n_squares:
             self.squares.append(self._generate_square())
 
-        for e in events:
+        for e in pygame.event.get():
             if e.type == pygame.KEYDOWN:
                 if e.key in keybinds.LEFT:
                     SoundManager.play('blip')

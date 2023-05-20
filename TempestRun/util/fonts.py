@@ -11,7 +11,8 @@ _FONT_PATHS = {
     "lame": "TempestRun/assets/fonts/CONSOLA.TTF",
     "lame_bold": "TempestRun/assets/fonts/CONSOLAB.TTF",
     "cool": "TempestRun/assets/fonts/VectorBattle.ttf",
-    "blocky": "TempestRun/assets/fonts/EightBit Atari-Ascprin.ttf"
+    "blocky": "TempestRun/assets/fonts/EightBit Atari-Ascprin.ttf",
+    "arcade": "Explont/data/fonts/font.ttf"
 }
 
 
