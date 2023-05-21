@@ -66,7 +66,7 @@ addJump = -7
 jumpCount = 0
 jumpPoint = 0
 deathCount = 0
-lives = 2
+lives = 3
 
 barrelX = []
 barrelY = []
@@ -541,7 +541,7 @@ def barrel():
 # @return: none
 def marioLives():
     #goes through all the lives you have left
-    for i in range(0, lives):
+    for i in range(lives):
         #blit images, adding 20 to the y each time you run the loop
         screen.blit(life, (60+i*20, 100))
 
@@ -623,10 +623,8 @@ def win():
 # @param: endScreen(image)
 # @return: none
 def end(endScreen):
-    
     #blit image
     screen.blit(endScreen, (0, 30))
-    
     #if the bottom option is selected, blit the icon next to the bottom option
     if option == "bottom":    
         screen.blit(selectIcon, (270, 640))
@@ -844,7 +842,10 @@ def _main():
     global confettiSpeed
     global confettiColour
     global upLadder
-
+    global moveSides
+    global moveRight
+    global moveLeft
+    global marioJumpCount
     inPlay = True
     replay = True
     while replay:
@@ -1212,7 +1213,7 @@ def _main():
                         marioImage = marioRight
                 
                     #if lives is less than 0, gameDone is True, and put score in leaderboards and find the high score using highScore()
-                    if lives < 0:
+                    if lives <= 0:
                         gameDone = True
                         #highestScore = highScore()
         
@@ -1434,7 +1435,8 @@ def _main():
                         marioImage = marioJumpLeft
             
                 #looks for return to be pressed and it can only do something when the game is lost or won
-                if keys[pygame.K_RETURN] and (gameDone or winGame):
+                #print(gameDone, winGame,keys[pygame.K_RETURN])
+                if keys[pygame.K_SPACE] and (gameDone or winGame):
                     #if the top option is selected, reset the game
                     if option == "top":
                     
@@ -1468,7 +1470,7 @@ def _main():
                         marioY = 720
                         addJump = -7
                         marioJumpCount = 0
-                        lives = 2
+                        lives = 3
                         difficulty = 0
                         barrelX = []
                         barrelY = []    
@@ -1479,15 +1481,18 @@ def _main():
                         fallCount = []
                         barrelLeft = []
                         barrelRight = []
+                        print("key top")
                 
                     #if the bottom option is selected, you will quit the game    
                     elif option == "bottom":
-                        #reset variables
+                        print("key bottom")
                         inPlay = False
                         replay = False
+                        print("bottom")
                         pygame.mixer.music.fadeout(1000)
                         import menu
                         menu.main_menu()
+                        
         
             #if it is True then redraw the screen
             if inPlay:
