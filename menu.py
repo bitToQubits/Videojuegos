@@ -71,6 +71,9 @@ def main_menu():
                     if selected_option_idx == 2:
                         import DonkeyKong.main as donkey
                         donkey._main()
+                    if selected_option_idx == 3:
+                        import rage.main as rage
+                        rage._main()
                     
 
         screen.fill((0, 0, 0))
