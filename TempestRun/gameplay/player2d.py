@@ -176,7 +176,11 @@ class Player:
             for obs in obstacles:
                 if obs.handle_potential_collision(self):
                     self.set_mode('dead')
+                    pygame.mixer.music.stop()
                     SoundManager.play('death')
+                    pygame.mixer.music.load('TempestRun/assets/songs/game_theme.ogg')
+                    pygame.mixer.music.set_volume(0.5)
+                    pygame.mixer.music.play(-1, fade_ms=7500)
                     self._obstacle_that_killed_me = obs
                     return
 

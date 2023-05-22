@@ -26,7 +26,7 @@ def main_menu():
     pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
     title_font = fonts.get_font(40,name="blocky")
     subtitle_font = fonts.get_font(20,name="blocky")
-    option_font = fonts.get_font(15,name="blocky")
+    option_font = fonts.get_font(12,name="blocky")
     info_font = fonts.get_font(20)
     TARGET_FPS = config.Display.fps if not config.Debug.fps_test else -1
     n_squares = 25
@@ -104,7 +104,7 @@ def main_menu():
                     title_bottom = subtitle_font.render('Press [x] to start', False, color)
                     subtitle_size = title_bottom.get_size()
                     screen.blit(title_bottom, dest=(screen_size[0] // 2 - subtitle_size[0] // 2,
-                                                 title_y+630))
+                                                 title_y+700))
                 elif i == 1:
                     msgs = ['↑ Joystick arriba o [X] para saltar',
                             '← Joystick a Izquierda',
@@ -117,20 +117,20 @@ def main_menu():
                     title_bottom = subtitle_font.render('Press [x] to start', False, color)
                     subtitle_size = title_bottom.get_size()
                     screen.blit(title_bottom, dest=(screen_size[0] // 2 - subtitle_size[0] // 2,
-                                         title_y+630))
+                                         title_y+700))
                 elif i == 2:
                     msgs = ['↑ Joystick arriba para subir', '[X] para saltar','← Joystick a Izquierda','→ Joystick a Derecha','[start] para menú']
                     color = (241,166,112)
                     title_bottom = subtitle_font.render('Press [x] to start', False, color)
                     subtitle_size = title_bottom.get_size()
                     screen.blit(title_bottom, dest=(screen_size[0] // 2 - subtitle_size[0] // 2,
-                                                 title_y+630))
+                                                 title_y+700))
                 elif i == 3:
                     color = neon.RED
                     title_bottom = subtitle_font.render('Press [x] to start', False, color)
                     subtitle_size = title_bottom.get_size()
                     screen.blit(title_bottom, dest=(screen_size[0] // 2 - subtitle_size[0] // 2,
-                                                 title_y+630))
+                                                 title_y+700))
 
             option_surface = option_font.render(option_text.upper(), True, color)
             option_size = option_surface.get_size()
