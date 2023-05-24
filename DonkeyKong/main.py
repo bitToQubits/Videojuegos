@@ -66,7 +66,7 @@ addJump = -7
 jumpCount = 0
 jumpPoint = 0
 deathCount = 0
-lives = 1
+lives = 3
 
 barrelX = []
 barrelY = []
@@ -738,8 +738,6 @@ def redraw_screen():
     #updating
     pygame.display.update()
 
-#loop whole game if user wants to keep restarting
-
 def _main():
         #Define Colour Values (R,G,B)
     global BLACK
@@ -908,6 +906,7 @@ def _main():
         
             #if DK has finished climbing but the intro is not done yet, move on to DK jumping
             elif climbDone and introDone == False:
+                print("f")
                 #if the platNum is less than or equal to 6, DK is still jumping
                 if platNum <= 6:
                     #if dkJumpY is 152, reset which way he's jumping to start going down
@@ -1318,8 +1317,34 @@ def _main():
                 #highestScore = highScore()
             
                 #reset variables to quit program
-                inPlay = False
-                replay = False
+                winLevel = False
+                climbDone = False
+                introDone = False
+                startDone = False
+                gameStart = False
+                throwBarrel = False
+                jumpLeft = False
+                jumpRight = False
+                jumpStill = False
+                hit = False
+                barrelX = []
+                barrelY = []    
+                barrelPic = []
+                barrelDirection = []
+                fall = []
+                fallCount = []
+                barrelLeft = []
+                barrelRight = []
+                inclineCount = 0
+                dkClimb = 0
+                platNum = 0
+                climbCount = 15
+                dkJumpX = 378
+                dkJumpY = 172
+                dkJumpYNum = 0
+                addJump = -7
+                jumpCount = 0
+                direction = "right"
                 pygame.mixer.music.fadeout(1000)
                 import menu
                 menu.main_menu()
@@ -1483,14 +1508,51 @@ def _main():
                             fallCount = []
                             barrelLeft = []
                             barrelRight = []
-                            print("key top")
                 
                     #if the bottom option is selected, you will quit the game    
                     elif option == "bottom":
                         if keys[pygame.K_RETURN]:
+                            #reset variables to restart
                             inPlay = False
-                            replay = False
-                            print("bottom")
+                            winLevel = False
+                            pressed = False
+                            climbDone = False
+                            introDone = False
+                            gameStart = False
+                            startDone = False
+                            gameDone = False
+                            throwBarrel = False
+                            jumpLeft = False
+                            jumpRight = False
+                            jumpStill = False
+                            winGame = False
+                            winLevel = False
+                            deathScene = False
+                            scoreWin = False
+                            winGameSceneDone = False
+                            score = 0
+                            levelNum = 0
+                            dkClimb = 0
+                            climbCount = 15
+                            platNum = 0
+                            dkJumpX = 378
+                            dkJumpY = 172
+                            dkJumpYNum = 0
+                            marioX = 150
+                            marioY = 720
+                            addJump = -7
+                            marioJumpCount = 0
+                            lives = 3
+                            difficulty = 0
+                            barrelX = []
+                            barrelY = []    
+                            barrelPic = []
+                            throwCountdown = 0
+                            barrelDirection = []
+                            fall = []
+                            fallCount = []
+                            barrelLeft = []
+                            barrelRight = []
                             pygame.mixer.music.fadeout(1000)
                             import menu
                             menu.main_menu()
