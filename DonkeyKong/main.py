@@ -66,7 +66,7 @@ addJump = -7
 jumpCount = 0
 jumpPoint = 0
 deathCount = 0
-lives = 3
+lives = 5
 
 barrelX = []
 barrelY = []
@@ -535,7 +535,6 @@ def barrel():
     for i in range(0, len(barrelPic)):
         screen.blit(barrelPic[i], (barrelX[i],barrelY[i]))
 
-
 # lives - blit visual representation of how many lives Mario has left
 # @param: none
 # @return: none
@@ -906,7 +905,6 @@ def _main():
         
             #if DK has finished climbing but the intro is not done yet, move on to DK jumping
             elif climbDone and introDone == False:
-                print("f")
                 #if the platNum is less than or equal to 6, DK is still jumping
                 if platNum <= 6:
                     #if dkJumpY is 152, reset which way he's jumping to start going down
@@ -979,7 +977,7 @@ def _main():
                         
                             #if mario jumped over a barrel, add 100 to the score 
                             if jumpPoint == 1:
-                                score = score + 100
+                                score = score + 400
                         
                             #if mario was facing right, change the image back to him facing right, and change mario's Y value if he had jumpped over some inclines
                             if direction == "right":
@@ -1050,9 +1048,9 @@ def _main():
                                 if fall[i] == False:
                                 
                                     if barrelDirection[i] == "right":
-                                        barrelX[i] = barrelX[i] + 10
+                                        barrelX[i] = barrelX[i] + 5
                                     else:
-                                        barrelX[i] = barrelX[i] - 10
+                                        barrelX[i] = barrelX[i] - 5
                                 
                                     #checks if the barrel needs to incline up/down and changes the value in the function
                                     barrelY[i] = incline(barrelY[i]-11, barrelX[i], barrelDirection[i], "barrel")
@@ -1125,7 +1123,7 @@ def _main():
                         #if throwBarrel is false, get a random number to decide whether or not DK will throw another barrel        
                         if throwBarrel == False:
                             #after each level the range will be smaller, meaning a higher chance of throwing barrels
-                            dkChoice = random.randint(0, 50-difficulty)
+                            dkChoice = random.randint(0, 70-difficulty)
                         
                             #if the number is 0, reset variables to throw the barrel
                             if dkChoice == 0:
@@ -1272,6 +1270,7 @@ def _main():
                 
                     #if DK has climbed 150 pixels, reset variables for the next level
                     if dkClimb == 150: 
+                        lives = 5
                         winLevel = False
                         climbDone = False
                         introDone = False
@@ -1467,7 +1466,7 @@ def _main():
                             marioY = 720
                             addJump = -7
                             marioJumpCount = 0
-                            lives = 3
+                            lives = 5
                             difficulty = 0
                             barrelX = []
                             barrelY = []    
@@ -1512,7 +1511,7 @@ def _main():
                             marioY = 720
                             addJump = -7
                             marioJumpCount = 0
-                            lives = 3
+                            lives = 5
                             difficulty = 0
                             barrelX = []
                             barrelY = []    
