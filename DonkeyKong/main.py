@@ -1315,36 +1315,6 @@ def _main():
             if keys[pygame.K_ESCAPE]:
                 #finds highscore and adds score to the dictionary
                 #highestScore = highScore()
-            
-                #reset variables to quit program
-                winLevel = False
-                climbDone = False
-                introDone = False
-                startDone = False
-                gameStart = False
-                throwBarrel = False
-                jumpLeft = False
-                jumpRight = False
-                jumpStill = False
-                hit = False
-                barrelX = []
-                barrelY = []    
-                barrelPic = []
-                barrelDirection = []
-                fall = []
-                fallCount = []
-                barrelLeft = []
-                barrelRight = []
-                inclineCount = 0
-                dkClimb = 0
-                platNum = 0
-                climbCount = 15
-                dkJumpX = 378
-                dkJumpY = 172
-                dkJumpYNum = 0
-                addJump = -7
-                jumpCount = 0
-                direction = "right"
                 pygame.mixer.music.fadeout(1000)
                 import menu
                 menu.main_menu()
