@@ -875,6 +875,7 @@ def _main():
         inPlay = True
         try:
             pygame.mixer.music.play(-1)
+            pygame.mixer.music.set_volume(0.50)
         except:
             pygame.mixer.init()
 
