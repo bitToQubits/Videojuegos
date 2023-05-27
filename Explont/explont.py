@@ -644,7 +644,8 @@ def explont():
     sounds['warp'].set_volume(0.4)
     sounds['jump'].set_volume(0.5)
     sounds['warning'].set_volume(0.3)
-
+    pygame.mixer.set_num_channels(10)
+    print(pygame.mixer.get_num_channels())
     gd = GameData()
 
     levels = [m.split('.')[0] for m in os.listdir('Explont/data/maps')]
@@ -1018,7 +1019,13 @@ def explont():
             c = (157, 48, 59)
             if gd.anger > 50:
                 if global_time % 30 == 0:
+                    #pygame.mixer.set_num_channels(10)
                     sounds['warning'].play()
+                    if pygame.mixer.Sound.get_num_channels(sounds['mareo']) == 0:
+                        pygame.mixer.Sound.play(sounds['mareo'])
+                    #sounds['mareo'].play()
+                    #print(pygame.mixer.get_num_channels())
+
                 if random.random() < 0.3:
                     c = (245, 237, 186)
                     bar_end = anger_bar_end_white
