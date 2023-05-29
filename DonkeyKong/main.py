@@ -857,6 +857,7 @@ def _main():
         jump = pygame.mixer.Sound("DonkeyKong/jump\\jump.wav")
         intro = pygame.mixer.Sound("DonkeyKong/intro1\\intro1.wav")
         death = pygame.mixer.Sound("DonkeyKong/death\\death.wav")
+        se_van = pygame.mixer.Sound("DonkeyKong/se_van\\se van.wav")
         pygame.mixer.music.load("DonkeyKong/bacmusic\\bacmusic.wav")
         death_cnt = 0
 
@@ -1316,6 +1317,7 @@ def _main():
                 #finds highscore and adds score to the dictionary
                 #highestScore = highScore()
                 pygame.mixer.music.fadeout(1000)
+                pygame.mixer.Sound.play(se_van)
                 import menu
                 menu.main_menu()
         
@@ -1524,6 +1526,7 @@ def _main():
                             barrelLeft = []
                             barrelRight = []
                             pygame.mixer.music.fadeout(1000)
+                            pygame.mixer.Sound.play(se_van)
                             import menu
                             menu.main_menu()
                         

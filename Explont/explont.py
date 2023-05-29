@@ -671,7 +671,7 @@ def explont():
         if random.random() < 0.001:
             random.choice([sounds['grass_1'], sounds['grass_2']]).play()
 
-        gd.anger += 0.027
+        gd.anger += 0.024
         gd.anger = max(0, gd.anger)
 
         gd.transition_state += gd.transition_direction * 0.023
